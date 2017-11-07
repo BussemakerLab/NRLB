@@ -1,0 +1,4 @@
+import("Biostrings")
+import("ggplot2")
+import("grid")
+exportPattern("^[[:alpha:]]+")
