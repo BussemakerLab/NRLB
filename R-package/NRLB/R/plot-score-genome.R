@@ -1,5 +1,7 @@
 #' Plot affinities of a sequence
 #' 
+#' @import ggplot2
+#' 
 #' @param genomicSequence
 #' @param fits
 #' @param index
@@ -15,7 +17,7 @@
 #'
 #' @export
 #' 
-plot.score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE, nPeaks=NULL, annotate=FALSE, rescale=NULL, 
+nrlb.plot.score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE, nPeaks=NULL, annotate=FALSE, rescale=NULL, 
                              genomicSequence2=NULL) {
   seq.string = deparse(substitute(genomicSequence))
   fit.string = deparse(substitute(fits))
