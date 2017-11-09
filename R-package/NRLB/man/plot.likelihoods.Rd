@@ -6,16 +6,6 @@
 \usage{
 \method{plot}{likelihoods}(fits, l, test = FALSE)
 }
-\arguments{
-\item{fits}{%% ~~Describe \code{fits} here~~}
-
-\item{l}{%% ~~Describe \code{l} here~~}
-
-\item{test}{%% ~~Describe \code{test} here~~}
-}
-\value{
-%% ~Describe the value returned %% If it is a LIST, use %%
-}
 \description{
 Plot likelihoods
 }

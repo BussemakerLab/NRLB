@@ -11,6 +11,7 @@
 #'
 #' @export
 #' 
+
 score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE) {
   #Create sequences for rapid scoring
   fSeq = abs(toComplex(genomicSequence, c(A=1, C=2, G=3, T=4, N=0)))

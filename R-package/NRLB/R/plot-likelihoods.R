@@ -1,9 +1,9 @@
 #' Plot likelihoods
 #' 
-#' @param fits %% ~~Describe \code{fits} here~~
-#' @param l %% ~~Describe \code{l} here~~
-#' @param test %% ~~Describe \code{test} here~~
-#' @return %% ~Describe the value returned %% If it is a LIST, use %%
+#' @param fits
+#' @param l
+#' @param test
+#' @return
 #' @note does not work with multi-mode fits (notion of window is unknown)
 #' 
 #' @examples
