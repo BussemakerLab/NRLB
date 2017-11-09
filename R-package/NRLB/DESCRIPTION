@@ -9,3 +9,6 @@ Description: Utilities for viewing and using NRLB models
 Imports: Biostrings, ggplot2, grid
 License: GPL-3
 RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

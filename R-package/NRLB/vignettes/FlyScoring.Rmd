@@ -1,3 +1,17 @@
+---
+title: "Scoring fly enhancers using NRLB models"
+author: "Chaitanya Rastogi and Harmen J. Bussemaker"
+date: "`r Sys.Date()`"
+output: rmarkdown::html
+vignette: >
+  %\VignetteIndexEntry{Scoring fly enhancers using NRLB models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This example reproduces a key figure from the NRLB paper.
+
+```{r, fig.show='asis'}
 library(NRLB)
 
 library(BSgenome.Dmelanogaster.UCSC.dm3)
@@ -13,3 +27,4 @@ Ubx.model = file.parser(Ubx.file)
 
 #Score regions, create plots and provide sequences
 nrlb.plot.score.genome(E3N, Ubx.model, index=20, mode=1, nPeaks = 10, annotate = TRUE)
+```
