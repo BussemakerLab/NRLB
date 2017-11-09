@@ -2,7 +2,7 @@
 title: "Scoring fly enhancers using NRLB models"
 author: "Chaitanya Rastogi and Harmen J. Bussemaker"
 date: "`r Sys.Date()`"
-output: rmarkdown::html
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Scoring fly enhancers using NRLB models}
   %\VignetteEngine{knitr::rmarkdown}
@@ -20,11 +20,11 @@ genome = Dmelanogaster
 # define E3N enhancer region from Crocker 2015 Cell paper
 E3N = genome$chrX[4915195:4915486]     
 
-#Define binding models
+#Define and load binding model
 Ubx.file = system.file("extdata/models", "Exd-UbxIVa.csv", package = "NRLB")
 Ubx.model = file.parser(Ubx.file)
 #Index 20 corresponds to the best 18bp nucleotide model
 
-#Score regions, create plots and provide sequences
+# score region and create plot
 nrlb.plot.score.genome(E3N, Ubx.model, index=20, mode=1, nPeaks = 10, annotate = TRUE)
 ```
