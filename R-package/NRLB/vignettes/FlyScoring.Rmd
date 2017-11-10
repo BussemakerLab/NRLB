@@ -9,22 +9,39 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This example reproduces a key figure from the NRLB paper.
+This vignette defines a set of fly enhancers, loads DNA binding specificity models for various Hox complexes, and then visualizes Hox binding affinity profiles along the enhancers. It is related to the paper on the No Read Left Behind (NRLB) algorithm by Rastogi et al., which is currently in revision.
 
-```{r, fig.show='asis'}
-library(NRLB)
+## Defining fly enhancers
 
+We start by defining a number of fly enhancers that were used in the NRLB paper. We will only be using the E3N in this vignette, but the others are included for reference. Note that the version of the fly genome used here is the somewhat outsdated `dm3`. The coordinates are only 'guaranteed' to be correct for `dm3`.
+```{r, message=FALSE, warning=FALSE}
 library(BSgenome.Dmelanogaster.UCSC.dm3)
 genome = Dmelanogaster
 
-# define E3N enhancer region from Crocker 2015 Cell paper
-E3N = genome$chrX[4915195:4915486]     
-
-#Define and load binding model
-Ubx.file = system.file("extdata/models", "Exd-UbxIVa.csv", package = "NRLB")
-Ubx.model = file.parser(Ubx.file)
-#Index 20 corresponds to the best 18bp nucleotide model
-
-# score region and create plot
-nrlb.plot.score.genome(E3N, Ubx.model, index=20, mode=1, nPeaks = 10, annotate = TRUE)
+#define genomic regions
+E3N     = genome$chrX[4915195:4915486]     #E3N enhancer region from Crocker 2015 Cell paper
+H7      = genome$chrX[4933945:4935001]     #7H enhancer region from Crocker 2015 Cell paper
+SVBA    = genome$chrX[4894315:4895475]     #Shavenbaby enhancer A dorsal sequence from Richard via e-mail
+DG3     = genome$chrX[4864294:4869560]     #DG3 enhancer region for shavenbaby from Richard via e-mail
+Snail.M = genome$chr2L[15464709:15465217]  #Snail minimal enhancer from Richard via e-mail
+Snail   = genome$chr2L[15464000:15466599]  #Larger snail enhancer region from Richard via e-mail
+Snail.P = genome$chr2L[15464307:15466101]  #Snail primordia region from Richard via e-mail
+DLL     = genome$chr2R[20690986:20691385]  #400bp sequence for distal-less starting with the sequence from the Gebelein 2002 Developmental Cell paper
+FKH250  = genome$chr3R[24419191:24419591]  #401bp sequence centered around the fkh250 binding site
+```
+## DNA binding specificity models
+Next, we define and load a number of relevant DNA binding models that were built from SELEX-seq in vitro binding data using the NRLB algorithm. These binding models are included with the current package. They are identical to what was used in the NRLB paper.
+```{r}
+library(NRLB)
+df = read.table(system.file("extdata", "hox-models.tsv", package = "NRLB"), stringsAsFactors = FALSE)
+df$file = system.file("extdata/fitsets", df$file, package = "NRLB")
+df$fits = lapply(df$file, file.parser)
+hoxmodels = apply(df, 1, as.list)
+names(hoxmodels)
+```
+## Affinity profiles
+Finally, we can created an affinity profile along the E3N enhancer as follows:
+```{r, fig.show='asis'}
+tf = hoxmodels$ExdUbx
+nrlb.plot.score.genome(E3N, tf$fits, tf$index, tf$mode, nPeaks = 10, annotate = TRUE)
 ```
