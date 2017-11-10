@@ -6,6 +6,22 @@
 \usage{
 score.seq(sequence, rSequence, k, isDinuc, nuc, dinuc)
 }
+\arguments{
+\item{sequence}{TO_BE_ADDED}
+
+\item{rSequence}{TO_BE_ADDED}
+
+\item{k}{TO_BE_ADDED}
+
+\item{isDinuc}{TO_BE_ADDED}
+
+\item{nuc}{TO_BE_ADDED}
+
+\item{dinuc}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
+}
 \description{
 Score DNA sequence using a model
 }

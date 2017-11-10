@@ -110,10 +110,10 @@
 #' 
 #' %% ~~ If necessary, more details than the description above ~~
 #' 
-#' @param fitA
-#' @param fitB
-#' @param range
-#' @return 
+#' @param fitA TO_BE_ADDED
+#' @param fitB TO_BE_ADDED
+#' @param range TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' @note Requires a core fit list
 #' 
 #' @examples

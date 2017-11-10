@@ -1,17 +1,18 @@
 #' Score genome with a fit
 #' 
-#' @param genomicSequence
-#' @param fits
-#' @param index
-#' @param mode
-#' @param rc
-#' @return
+#' @import Biostrings
+#' 
+#' @param genomicSequence TO_BE_ADDED
+#' @param fits TO_BE_ADDED
+#' @param index TO_BE_ADDED
+#' @param mode TO_BE_ADDED
+#' @param rc TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'
 #' @export
 #' 
-
 score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE) {
   #Create sequences for rapid scoring
   fSeq = abs(toComplex(genomicSequence, c(A=1, C=2, G=3, T=4, N=0)))

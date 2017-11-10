@@ -1,9 +1,9 @@
 #' Plot likelihoods
 #' 
-#' @param fits
-#' @param l
-#' @param test
-#' @return
+#' @param fits TO_BE_ADDED
+#' @param l TO_BE_ADDED
+#' @param test TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' @note does not work with multi-mode fits (notion of window is unknown)
 #' 
 #' @examples

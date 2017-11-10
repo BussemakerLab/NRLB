@@ -4,7 +4,17 @@
 \alias{plot.likelihoods}
 \title{Plot likelihoods}
 \usage{
-\method{plot}{likelihoods}(fits, l, test = FALSE)
+plot.likelihoods(fits, l, test = FALSE)
+}
+\arguments{
+\item{fits}{TO_BE_ADDED}
+
+\item{l}{TO_BE_ADDED}
+
+\item{test}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
 }
 \description{
 Plot likelihoods

@@ -1,14 +1,14 @@
 #' R0 QQ Plot
 #' 
-#' @param fileName
-#' @param lowerBound
-#' @param upperBound
-#' @param divSize
-#' @param completeCoverage
-#' @param compare
-#' @param ylim
-#' @param xlim
-#' @return
+#' @param fileName TO_BE_ADDED
+#' @param lowerBound TO_BE_ADDED
+#' @param upperBound TO_BE_ADDED
+#' @param divSize TO_BE_ADDED
+#' @param completeCoverage TO_BE_ADDED
+#' @param compare TO_BE_ADDED
+#' @param ylim TO_BE_ADDED
+#' @param xlim TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

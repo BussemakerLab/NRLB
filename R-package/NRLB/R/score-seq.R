@@ -1,12 +1,12 @@
 #' Score DNA sequence using a model
 #' 
-#' @param sequence
-#' @param rSequence
-#' @param k
-#' @param isDinuc
-#' @param nuc
-#' @param dinuc
-#' @return
+#' @param sequence TO_BE_ADDED
+#' @param rSequence TO_BE_ADDED
+#' @param k TO_BE_ADDED
+#' @param isDinuc TO_BE_ADDED
+#' @param nuc TO_BE_ADDED
+#' @param dinuc TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' @note requires explicit nuc, dinuc formatting (mode independent)
 #' 
 #' @examples

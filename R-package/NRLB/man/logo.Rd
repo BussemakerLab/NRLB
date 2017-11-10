@@ -10,16 +10,38 @@ logo(fits, index = NULL, mode = NULL, rc = FALSE, display = TRUE,
   r.del = 0)
 }
 \arguments{
-\item{fits}{}
+\item{fits}{TO_BE_ADDED}
 
-\item{index}{}
+\item{index}{TO_BE_ADDED}
 
-\item{mode}{}
+\item{mode}{TO_BE_ADDED}
 
-\item{rc}{}
+\item{rc}{TO_BE_ADDED}
+
+\item{display}{TO_BE_ADDED}
+
+\item{betas}{TO_BE_ADDED}
+
+\item{save.path}{TO_BE_ADDED}
+
+\item{isPDF}{TO_BE_ADDED}
+
+\item{title}{TO_BE_ADDED}
+
+\item{ylim}{TO_BE_ADDED}
+
+\item{fit.name}{TO_BE_ADDED}
+
+\item{l.pad}{TO_BE_ADDED}
+
+\item{r.pad}{TO_BE_ADDED}
+
+\item{l.del}{TO_BE_ADDED}
+
+\item{r.del}{TO_BE_ADDED}
 }
 \value{
-
+TO_BE_ADDED
 }
 \description{
 Generate PSAM

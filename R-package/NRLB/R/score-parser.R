@@ -1,12 +1,12 @@
 #' Read in binary files containing genomic scoring results
 #' 
-#' @param genome 
-#' @param score.dir
-#' @param prot.name
-#' @param chr.name 
-#' @param k 
+#' @param genome TO_BE_ADDED
+#' @param score.dir TO_BE_ADDED
+#' @param prot.name TO_BE_ADDED
+#' @param chr.name TO_BE_ADDED
+#' @param k TO_BE_ADDED
 #'
-#' @return
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

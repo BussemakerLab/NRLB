@@ -1,8 +1,8 @@
 #' Print fit results
 #' 
-#' @param fits 
-#' @param index
-#' @return
+#' @param fits  TO_BE_ADDED
+#' @param index TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

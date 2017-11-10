@@ -1,8 +1,8 @@
 #' Order fit results
 #' 
-#' @param fits
-#' @param n
-#' @return
+#' @param fits TO_BE_ADDED
+#' @param n TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

@@ -2,16 +2,16 @@
 #' 
 #' @import ggplot2
 #' 
-#' @param genomicSequence
-#' @param fits
-#' @param index
-#' @param mode
-#' @param rc
-#' @param nPeaks
-#' @param annotate
-#' @param rescale
-#' @param genomicSequence2
-#' @return
+#' @param genomicSequence TO_BE_ADDED
+#' @param fits TO_BE_ADDED
+#' @param index TO_BE_ADDED
+#' @param mode TO_BE_ADDED
+#' @param rc TO_BE_ADDED
+#' @param nPeaks TO_BE_ADDED
+#' @param annotate TO_BE_ADDED
+#' @param rescale TO_BE_ADDED
+#' @param genomicSequence2 TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

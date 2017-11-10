@@ -7,10 +7,12 @@
 \method{print}{fit}(fits, index = NULL)
 }
 \arguments{
-\item{fits}{}
+\item{fits}{TO_BE_ADDED}
+
+\item{index}{TO_BE_ADDED}
 }
 \value{
-
+TO_BE_ADDED
 }
 \description{
 Print fit results

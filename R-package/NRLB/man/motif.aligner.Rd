@@ -6,6 +6,16 @@
 \usage{
 motif.aligner(fitA, fitB, range = NULL)
 }
+\arguments{
+\item{fitA}{TO_BE_ADDED}
+
+\item{fitB}{TO_BE_ADDED}
+
+\item{range}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
+}
 \description{
 %% ~~ A concise (1-5 lines) description of what the function does. ~~
 }

@@ -1,10 +1,10 @@
 #' Quick Logo
 #' 
-#' @param fits
-#' @param index
-#' @param mode
-#' @param rc
-#' @return
+#' @param fits TO_BE_ADDED
+#' @param index TO_BE_ADDED
+#' @param mode TO_BE_ADDED
+#' @param rc TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

@@ -4,29 +4,35 @@
 \alias{plot.compare}
 \title{Compare two models}
 \usage{
-\method{plot}{compare}(fitA, fitB, indexA = NULL, indexB = NULL,
-  modeIdxA = NULL, modeIdxB = NULL, rcA = FALSE, rcB = FALSE,
-  offset = NULL, labA = NULL, labB = NULL)
+plot.compare(fitA, fitB, indexA = NULL, indexB = NULL, modeIdxA = NULL,
+  modeIdxB = NULL, rcA = FALSE, rcB = FALSE, offset = NULL,
+  labA = NULL, labB = NULL)
 }
 \arguments{
-\item{fitA}{}
+\item{fitA}{TO_BE_ADDED}
 
-\item{fitB}{}
+\item{fitB}{TO_BE_ADDED}
 
-\item{indexA}{}
+\item{indexA}{TO_BE_ADDED}
 
-\item{indexB}{}
+\item{indexB}{TO_BE_ADDED}
 
-\item{modeIdxA}{}
+\item{modeIdxA}{TO_BE_ADDED}
 
-\item{modeIdxB}{}
+\item{modeIdxB}{TO_BE_ADDED}
 
-\item{rcA}{}
+\item{rcA}{TO_BE_ADDED}
 
-\item{rcB}{}
+\item{rcB}{TO_BE_ADDED}
+
+\item{offset}{TO_BE_ADDED}
+
+\item{labA}{TO_BE_ADDED}
+
+\item{labB}{TO_BE_ADDED}
 }
 \value{
-
+TO_BE_ADDED
 }
 \description{
 Compare two models

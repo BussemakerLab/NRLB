@@ -6,8 +6,17 @@
 \usage{
 ql(fits, index, mode = NULL, rc = FALSE)
 }
-\value{
+\arguments{
+\item{fits}{TO_BE_ADDED}
 
+\item{index}{TO_BE_ADDED}
+
+\item{mode}{TO_BE_ADDED}
+
+\item{rc}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
 }
 \description{
 Quick Logo

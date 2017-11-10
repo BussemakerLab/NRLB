@@ -12,22 +12,22 @@
 
 #' Generate PSAM
 #' 
-#' @param fits 
-#' @param index 
-#' @param mode 
-#' @param rc 
-#' @param display
-#' @param betas
-#' @param save.path
-#' @param isPDF
-#' @param title
-#' @param ylim
-#' @param fit.name
-#' @param l.pad
-#' @param r.pad
-#' @param l.del
-#' @param r.del
-#' @return
+#' @param fits TO_BE_ADDED
+#' @param index TO_BE_ADDED
+#' @param mode TO_BE_ADDED
+#' @param rc TO_BE_ADDED
+#' @param display TO_BE_ADDED
+#' @param betas TO_BE_ADDED
+#' @param save.path TO_BE_ADDED
+#' @param isPDF TO_BE_ADDED
+#' @param title TO_BE_ADDED
+#' @param ylim TO_BE_ADDED
+#' @param fit.name TO_BE_ADDED
+#' @param l.pad TO_BE_ADDED
+#' @param r.pad TO_BE_ADDED
+#' @param l.del TO_BE_ADDED
+#' @param r.del TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

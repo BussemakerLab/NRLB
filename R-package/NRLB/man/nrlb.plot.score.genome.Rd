@@ -8,8 +8,27 @@ nrlb.plot.score.genome(genomicSequence, fits, index, mode = NULL,
   rc = FALSE, nPeaks = NULL, annotate = FALSE, rescale = NULL,
   genomicSequence2 = NULL)
 }
-\value{
+\arguments{
+\item{genomicSequence}{TO_BE_ADDED}
 
+\item{fits}{TO_BE_ADDED}
+
+\item{index}{TO_BE_ADDED}
+
+\item{mode}{TO_BE_ADDED}
+
+\item{rc}{TO_BE_ADDED}
+
+\item{nPeaks}{TO_BE_ADDED}
+
+\item{annotate}{TO_BE_ADDED}
+
+\item{rescale}{TO_BE_ADDED}
+
+\item{genomicSequence2}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
 }
 \description{
 Plot affinities of a sequence

@@ -6,8 +6,15 @@
 \usage{
 \method{max}{seq}(fits, index, mode = NULL)
 }
-\value{
+\arguments{
+\item{fits}{TO_BE_ADDED}
 
+\item{index}{TO_BE_ADDED}
+
+\item{mode}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
 }
 \description{
 Find the highest affinity sequence for a model

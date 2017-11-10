@@ -7,14 +7,18 @@
 score.parser(genome, score.dir, prot.name, chr.name, k)
 }
 \arguments{
-\item{genome}{}
+\item{genome}{TO_BE_ADDED}
 
-\item{chr.name}{}
+\item{score.dir}{TO_BE_ADDED}
 
-\item{k}{}
+\item{prot.name}{TO_BE_ADDED}
+
+\item{chr.name}{TO_BE_ADDED}
+
+\item{k}{TO_BE_ADDED}
 }
 \value{
-
+TO_BE_ADDED
 }
 \description{
 Read in binary files containing genomic scoring results

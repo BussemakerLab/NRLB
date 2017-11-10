@@ -13,31 +13,22 @@ This vignette defines a set of fly enhancers, loads DNA binding specificity mode
 
 ## Defining fly enhancers
 
-We start by defining a number of fly enhancers that were used in the NRLB paper. We will only be using the E3N in this vignette, but the others are included for reference. Note that the version of the fly genome used here is the somewhat outsdated `dm3`. The coordinates are only 'guaranteed' to be correct for `dm3`.
-```{r, message=FALSE, warning=FALSE}
-library(BSgenome.Dmelanogaster.UCSC.dm3)
-df = read.table(system.file("extdata", "fly-enhancers.tsv", package = "NRLB"),
-                    stringsAsFactors = FALSE)
-df$seq = as.list(Views(BSgenome.Dmelanogaster.UCSC.dm3, 
-                      GRanges(df$chr, IRanges(df$start, df$end), strand = "+")))
-enhancers = apply(df, 1, as.list)
-names(enhancers)
-enhancers$E3N
+We start by defining a number of fly enhancers that were used in the NRLB paper. We will only be using the E3N in this vignette, but the others are included for reference. Note that the version of the fly genome used here is the somewhat outdated `dm3`. The coordinates are only 'guaranteed' to be correct for `dm3`.
+```{r}
+enh = NRLB::fly.enhancers()
+names(enh)
+enh$E3N
 ```
 ## DNA binding specificity models
 Next, we define and load a number of relevant DNA binding models that were built from SELEX-seq in vitro binding data using the NRLB algorithm. These binding models are included with the current package. They are identical to what was used in the NRLB paper.
 ```{r}
-df = read.table(system.file("extdata", "hox-models.tsv", package = "NRLB"), 
-                stringsAsFactors = FALSE)
-df$file = system.file("extdata/fitsets", df$file, package = "NRLB")
-df$fits = lapply(df$file, file.parser)
-hoxmodels = apply(df, 1, as.list)
-names(hoxmodels)
+models = NRLB::hox.models()
+names(models)
 ```
 ## Affinity profiles
 Finally, we can created an affinity profile along the E3N enhancer as follows:
 ```{r, fig.show='asis'}
-model = hoxmodels$ExdUbx
-nrlb.plot.score.genome(enhancers$E3N$seq, model$fits, model$index, model$mode, 
+model = models$ExdScr
+NRLB::nrlb.plot.score.genome(enh$E3N$seq, model$fits, model$index, model$mode, 
                        nPeaks = 10, annotate = TRUE)
 ```

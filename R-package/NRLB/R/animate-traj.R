@@ -1,9 +1,9 @@
 #' Animate solution trajectory with PSAMs
 #' 
-#' @param trajPath
-#' @param outPath
-#' @param k
-#' @return
+#' @param trajPath TO_BE_ADDED
+#' @param outPath TO_BE_ADDED
+#' @param k TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @examples
 #'

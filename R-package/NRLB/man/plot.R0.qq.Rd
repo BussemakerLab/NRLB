@@ -4,11 +4,28 @@
 \alias{plot.R0.qq}
 \title{R0 QQ Plot}
 \usage{
-\method{plot}{R0.qq}(fileName, lowerBound, upperBound, divSize,
-  completeCoverage = TRUE, compare = NULL, ylim = NULL, xlim = NULL)
+plot.R0.qq(fileName, lowerBound, upperBound, divSize, completeCoverage = TRUE,
+  compare = NULL, ylim = NULL, xlim = NULL)
+}
+\arguments{
+\item{fileName}{TO_BE_ADDED}
+
+\item{lowerBound}{TO_BE_ADDED}
+
+\item{upperBound}{TO_BE_ADDED}
+
+\item{divSize}{TO_BE_ADDED}
+
+\item{completeCoverage}{TO_BE_ADDED}
+
+\item{compare}{TO_BE_ADDED}
+
+\item{ylim}{TO_BE_ADDED}
+
+\item{xlim}{TO_BE_ADDED}
 }
 \value{
-
+TO_BE_ADDED
 }
 \description{
 R0 QQ Plot

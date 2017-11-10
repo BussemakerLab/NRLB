@@ -1,17 +1,17 @@
 #' Compare two models
 #' 
-#' @param fitA 
-#' @param fitB 
-#' @param indexA 
-#' @param indexB 
-#' @param modeIdxA 
-#' @param modeIdxB 
-#' @param rcA 
-#' @param rcB 
-#' @param offset
-#' @param labA
-#' @param labB
-#' @return
+#' @param fitA  TO_BE_ADDED
+#' @param fitB  TO_BE_ADDED
+#' @param indexA  TO_BE_ADDED
+#' @param indexB  TO_BE_ADDED
+#' @param modeIdxA  TO_BE_ADDED
+#' @param modeIdxB  TO_BE_ADDED
+#' @param rcA  TO_BE_ADDED
+#' @param rcB  TO_BE_ADDED
+#' @param offset TO_BE_ADDED
+#' @param labA TO_BE_ADDED
+#' @param labB TO_BE_ADDED
+#' @return TO_BE_ADDED
 #'
 #' @examples
 #'

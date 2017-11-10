@@ -6,8 +6,15 @@
 \usage{
 animate.traj(trajPath, outPath, k)
 }
-\value{
+\arguments{
+\item{trajPath}{TO_BE_ADDED}
 
+\item{outPath}{TO_BE_ADDED}
+
+\item{k}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
 }
 \description{
 Animate solution trajectory with PSAMs

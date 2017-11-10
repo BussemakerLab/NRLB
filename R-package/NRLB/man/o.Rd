@@ -6,8 +6,13 @@
 \usage{
 o(fits, n = 5)
 }
-\value{
+\arguments{
+\item{fits}{TO_BE_ADDED}
 
+\item{n}{TO_BE_ADDED}
+}
+\value{
+TO_BE_ADDED
 }
 \description{
 Order fit results

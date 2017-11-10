@@ -1,9 +1,9 @@
 #' Find the highest affinity sequence for a model
 #' 
-#' @param fits
-#' @param index
-#' @param mode
-#' @return
+#' @param fits TO_BE_ADDED
+#' @param index TO_BE_ADDED
+#' @param mode TO_BE_ADDED
+#' @return TO_BE_ADDED
 #' 
 #' @note uses dynamic programming
 #' 
