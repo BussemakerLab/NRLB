@@ -1,0 +1,10 @@
+chr	start	end	description
+E3N	chrX	4915195	4915486	"E3N enhancer region from Crocker 2015 Cell paper"
+H7	chrX	4933945	4935001	"7H enhancer region from Crocker 2015 Cell paper"
+SVBA	chrX	4894315	4895475	"Shavenbaby enhancer A dorsal sequence from Richard via e-mail"
+DG3	chrX	4864294	4869560	"DG3 enhancer region for shavenbaby from Richard via e-mail"
+Snail.M	chr2L	15464709	15465217	"Snail minimal enhancer from Richard via e-mail"
+Snail	chr2L	15464000	15466599	"Larger snail enhancer region from Richard via e-mail"
+Snail.P	chr2L	15464307	15466101	"Snail primordia region from Richard via e-mail"
+DLL	chr2R	20690986	20691385	"400bp sequence for distal-less starting with the sequence from the Gebelein 2002 Developmental Cell paper"
+FKH250	chr3R	24419191	24419591	"401bp sequence centered around the fkh250 binding site"
