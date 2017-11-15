@@ -10,9 +10,9 @@
 #' @export
 #' 
 hox.models = function() {
-  df = read.table(system.file("extdata", "hox-models.tsv", package = "NRLB"), 
+  df = read.table(system.file("extdata", "hox-models.tsv", package = "NRLBtools"), 
                   stringsAsFactors = FALSE)
-  df$file = system.file("extdata/fitsets", df$file, package = "NRLB")
+  df$file = system.file("extdata/fitsets", df$file, package = "NRLBtools")
   df$fits = lapply(df$file, file.parser)
   nested.list = apply(df, 1, as.list)
   return(nested.list)

@@ -8,7 +8,7 @@
 #' @export
 #' 
 fly.enhancers = function() {
-  df = read.table(system.file("extdata", "fly-enhancers.tsv", package = "NRLB"),
+  df = read.table(system.file("extdata", "fly-enhancers.tsv", package = "NRLBtools"),
                   stringsAsFactors = FALSE)
   genome = BSgenome.Dmelanogaster.UCSC.dm3::Dmelanogaster
   df$seq = as.list(
