@@ -1,4 +1,4 @@
-Package: NRLB
+Package: NRLBtools
 Type: Package
 Title: Utilities for viewing and using NRLB models
 Version: 1.1
@@ -36,7 +36,7 @@ Collate:
     'max-seq.R'
     'motif-aligner.R'
     'order-fit-results.R'
-    'package-NRLB.R'
+    'package-NRLBtools.R'
     'plot-R0-qq.R'
     'plot-compare.R'
     'plot-likelihoods.R'

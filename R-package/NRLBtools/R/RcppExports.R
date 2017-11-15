@@ -7,6 +7,6 @@
 #' @return An integer
 #' @export
 timesTwo <- function(x) {
-    .Call('_NRLB_timesTwo', PACKAGE = 'NRLB', x)
+    .Call('_NRLBtools_timesTwo', PACKAGE = 'NRLBtools', x)
 }
 
