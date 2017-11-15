@@ -13,3 +13,6 @@ The NRLB package provides tools for working with protein-DNA recognition models 
 The foo functions ...
 }
 
+\author{
+Chaitanya Rastogi and Harmen J. Bussemaker
+}

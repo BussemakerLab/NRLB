@@ -5,17 +5,29 @@ Version: 1.1
 Date: 2017-11-07
 Author: Chaitanya Rastogi and Harmen J. Bussemaker
 Maintainer: Harmen J. Bussemaker <hjb2004@columbia.edu>
-Description: This package provides tools for viewing and using DNA binding 
-    specificity models built by the No Read Left Behind (NRLB) algorith. 
+Description: 
+    This package provides tools for viewing and using DNA binding 
+    specificity models built by the No Read Left Behind (NRLB) algorithm. 
     The models contained in this package were derived from SELEX-seq data.
-Imports: ggplot2, Biostrings
-Depends: IRanges, GenomicRanges, BSgenome.Dmelanogaster.UCSC.dm3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    Rcpp (>= 0.12.13),
+    ggplot2,
+    Biostrings
+LinkingTo: Rcpp
+Depends: 
+    IRanges, 
+    GenomicRanges, 
+    BSgenome.Dmelanogaster.UCSC.dm3
 License: GPL-3
 RoxygenNote: 6.0.1
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown
 VignetteBuilder: knitr
 Collate: 
+    'RcppExports.R'
     'animate-traj.R'
     'file-parser.R'
     'fly-enhancers.R'
