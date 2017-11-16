@@ -129,17 +129,18 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   }
   dim(motif) = c(4, k)
   motif = t(motif)
-  system("mkdir ~/logo_tmp")
-  write(paste0("<matrix_reduce>\n<psam_length>", k, "</psam_length>\n<psam>\n")
-        , file="~/logo_tmp/data.xml", append=TRUE)
+  #system("mkdir ~/logo_tmp")
+  temp.dir = tempdir()
+  temp.file.xml = tempfile("psam-", temp.dir, ".xml")
+  write(paste0("<matrix_reduce>\n<psam_length>", k, "</psam_length>\n<psam>\n"), file=temp.file.xml, append=TRUE)
   for (i in 1:k) {
     write(paste0(motif[i,1],"\t\t",motif[i,2],"\t\t",motif[i,3],"\t\t",motif[i,4],"\n")
-          , file="~/logo_tmp/data.xml", append=TRUE)
+          , file = temp.file.xml, append=TRUE)
   }
   write("</psam>\n</matrix_reduce>"
-        , file="~/logo_tmp/data.xml", append=TRUE)
-  bash.string = paste0("~/REDUCE-Suite-v2.2/bin/LogoGenerator -output=~/logo_tmp/ -logo=", f.name)
-  bash.string = paste(bash.string, "-style=ddG -file=~/logo_tmp/data.xml") 
+        , file=temp.file.xml, append=TRUE)
+  bash.string = paste0("~/REDUCE-Suite-v2.2/bin/LogoGenerator -output=", temp.dir, " -logo=", f.name)
+  bash.string = paste0(bash.string, " -style=ddG -file=", temp.file.xml) 
   if (isPDF) {
     bash.string = paste(bash.string, "-format=pdf")
   } else {
@@ -153,7 +154,7 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   }
   system(bash.string)
   if (!is.null(save.path)) {
-    system(paste0("mv ~/logo_tmp/",f.name, " ", save.path))
+    system(paste("mv", file.path(temp.dir, f.name), save.path))
   }
   if (display && isPDF) {
     if (!is.null(save.path)) {
@@ -163,7 +164,7 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
         .openPDF(save.path)
       }
     } else {
-      .openPDF(paste0("~/logo_tmp/", f.name))
+      .openPDF(file.path(temp.dir, f.name))
     }
   }
   
@@ -206,7 +207,7 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
       scale_colour_hue(name="Feature", breaks=as.character(1:n.features), labels=as.character(1:n.features)) +
       ggtitle(paste("Shape Profile:", paste(info.string, collapse=" "))) + 
       scale_x_discrete(labels=motif.seq, limits=c(1:k))
-    ggsave(filename=f.name, path="~/logo_tmp/")
+    ggsave(filename=f.name, path=temp.dir)
     
     if (!is.null(save.path)) {
       if (dir.exists(save.path)) {
@@ -216,20 +217,20 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
         new.f.path = paste0(strsplit(basename(save.path), ".pdf")[[1]], "-shape.pdf")
         save.path = paste0(new.dir.path, "/",new.f.path)
       }
-      system(paste0("mv ~/logo_tmp/",f.name, " ", save.path))
+      system(paste("mv", file.path(temp.dir, f.name), save.path))
     }
     if (display) {
       if (!is.null(save.path)) {
         if (dir.exists(save.path)) {
-          .openPDF(paste0(save.path, f.name))
+          .openPDF(file.path(save.path, f.name))
         } else {
           .openPDF(save.path)
         }
       } else {
-        .openPDF(paste0("~/logo_tmp/", f.name))
+        .openPDF(file.path(temp.dir, f.name))
       }
     }
   }
   Sys.sleep(1)
-  system("rm -rf ~/logo_tmp")
+  #system("rm -rf ~/logo_tmp")
 }
