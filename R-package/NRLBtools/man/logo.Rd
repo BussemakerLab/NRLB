@@ -5,7 +5,7 @@
 \title{Generate PSAM}
 \usage{
 logo(fits, index = NULL, mode = NULL, rc = FALSE, display = TRUE,
-  betas = NULL, save.path = NULL, isPDF = TRUE, title = NULL,
+  betas = NULL, save.path = NULL, isPDF = FALSE, title = NULL,
   ylim = NULL, fit.name = NULL, l.pad = 0, r.pad = 0, l.del = 0,
   r.del = 0)
 }

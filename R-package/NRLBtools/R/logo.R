@@ -33,10 +33,11 @@
 #'
 #' @export
 #' 
-logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL, save.path=NULL, isPDF=TRUE, title=NULL, ylim=NULL, fit.name=NULL,
+logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL, save.path=NULL, isPDF=FALSE, title=NULL, ylim=NULL, fit.name=NULL,
                 l.pad=0, r.pad=0, l.del=0, r.del=0) {
   if (is.null(fit.name)) {
     fit.name = deparse(substitute(fits))
+    fit.name = gsub("\\$", ".", fit.name) # avoid substitution in system call
   }
   #Check to see if the input is a core fit
   if (is.null(index)) {
@@ -156,6 +157,11 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   if (!is.null(save.path)) {
     system(paste("mv", file.path(temp.dir, f.name), save.path))
   }
+  if (display && !isPDF) {
+    my.file = file.path(temp.dir, f.name)
+    im = magick::image_read(file.path(temp.dir, f.name))
+    return(im)
+  }
   if (display && isPDF) {
     if (!is.null(save.path)) {
       if (dir.exists(save.path)) {
@@ -165,9 +171,9 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
       }
     } else {
       .openPDF(file.path(temp.dir, f.name))
+      return(file.path(temp.dir, f.name))
     }
   }
-  
   
   #Now make shape profile, if it exists
   if (!is.null(fit.output$SB)) {
@@ -219,7 +225,7 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
       }
       system(paste("mv", file.path(temp.dir, f.name), save.path))
     }
-    if (display) {
+    if (display && isPDF) {
       if (!is.null(save.path)) {
         if (dir.exists(save.path)) {
           .openPDF(file.path(save.path, f.name))
@@ -230,7 +236,26 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
         .openPDF(file.path(temp.dir, f.name))
       }
     }
+    Sys.sleep(1)
   }
-  Sys.sleep(1)
-  #system("rm -rf ~/logo_tmp")
+}
+
+
+#' Quick Logo
+#' 
+#' @param fits NRLB fit set
+#' @param index Index of model within fit set
+#' @param mode Mode within model
+#' @param rc Whether to use model in reverse-complement form
+#' @return Plots an image representing an energy logo for the model
+#' 
+#' @examples
+#' 
+#' m = NRLBtools::hox.models()$ExdSrc
+#' ql(m$fits, m$index, m$mode)
+#'
+#' @export
+#' 
+ql = function(fits, index, mode=NULL, rc=FALSE) {
+  logo(fits, index = index, mode = mode, rc = rc, fit.name=deparse(substitute(fits)))
 }

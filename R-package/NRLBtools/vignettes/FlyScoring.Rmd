@@ -25,10 +25,21 @@ Next, we define and load a number of relevant DNA binding models that were built
 models = NRLBtools::hox.models()
 names(models)
 ```
+## Energy Logo
+Let us select a model for a specific heterodimer from our model collection:
+```{r}
+m = models$ExdScr
+```
+It is always a good idea to visualize the model as an energy logo before using it:
+```{r}
+NRLBtools::logo(m$fits, m$index, m$mode)
+```
+
 ## Affinity profiles
 Finally, we can created an affinity profile along the E3N enhancer as follows:
 ```{r, fig.show='asis'}
 model = models$ExdScr
-NRLBtools::nrlb.plot.score.genome(enh$E3N$seq, model$fits, model$index, model$mode, 
-                       nPeaks = 10, annotate = TRUE)
+NRLBtools::nrlb.plot.score.genome(enh$E3N$seq,
+                                  m$fits, m$index, m$mode,
+                                  nPeaks = 10, annotate = TRUE)
 ```

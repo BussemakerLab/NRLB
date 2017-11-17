@@ -10,7 +10,7 @@ Description: This package provides tools for viewing and using DNA binding
     The models contained in this package were derived from SELEX-seq data.
 Encoding: UTF-8
 LazyData: true
-Imports: Rcpp (>= 0.12.13), ggplot2, Biostrings
+Imports: Rcpp (>= 0.12.13), ggplot2, magick, Biostrings
 LinkingTo: Rcpp
 Depends: IRanges, GenomicRanges, BSgenome.Dmelanogaster.UCSC.dm3
 License: GPL-3
