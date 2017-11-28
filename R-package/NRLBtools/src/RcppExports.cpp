@@ -5,6 +5,16 @@
 
 using namespace Rcpp;
 
+// LogoGenerator
+void LogoGenerator(StringVector arguments);
+RcppExport SEXP _NRLBtools_LogoGenerator(SEXP argumentsSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type arguments(argumentsSEXP);
+    LogoGenerator(arguments);
+    return R_NilValue;
+END_RCPP
+}
 // timesTwo
 NumericVector timesTwo(NumericVector x);
 RcppExport SEXP _NRLBtools_timesTwo(SEXP xSEXP) {
@@ -18,6 +28,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_NRLBtools_LogoGenerator", (DL_FUNC) &_NRLBtools_LogoGenerator, 1},
     {"_NRLBtools_timesTwo", (DL_FUNC) &_NRLBtools_timesTwo, 1},
     {NULL, NULL, 0}
 };

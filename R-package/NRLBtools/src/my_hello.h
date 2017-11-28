@@ -1,0 +1,1 @@
+char* my_hello(void);

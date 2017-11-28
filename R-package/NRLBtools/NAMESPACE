@@ -2,6 +2,7 @@
 
 S3method(max,seq)
 S3method(print,fit)
+export(LogoGenerator)
 export(aff)
 export(animate.traj)
 export(file.parser)
