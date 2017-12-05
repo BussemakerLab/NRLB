@@ -1,0 +1,28 @@
+LogoGenerator [options] -file=PSAM_File
+
+  Required parameters:
+    -file=PSAM_file     --- name of the PSAM matrix file to get a logo
+
+  Optional parameters:
+    [-output=dir_name]  --- path to the output directory (./)
+    [-logo=IMAGE_file]  --- name of output logo image file (base-filename.png)
+    [-format=IMAGE_FMT] --- image format of the logo: eps|pdf|jpeg|png|gif (png)
+                            Note: o pdf, jpeg and png formats make use of "gs",
+                                  o gif format uses both "gs" and "convert"
+                                  o check 'pkg_settings.cfg' for settings
+    [-style=LOGO_STYLE] --- style of the logo: raw|freq|bits_info|ddG (bits_info)
+    [-type=INPUT_TYPE]  --- input type for generating the logo: PSAM|fasta|flat
+                            If in 'fasta' or 'flat' format, the sequences must be
+                            already aligned and of the same length (PSAM)
+    [-title=string]     --- title string of the logo image
+#    [-min_Ka=float]     --- minimum allowable Ka (0.001)
+    [-width=float]      --- logo width in cm (12)
+    [-height=float]     --- logo height in cm (7.5)
+    [-ymin=float]       --- minimum value on the y-axis
+    [-ymax=float]       --- maximum value on the y-axis
+    [-frame]            --- switch for drawing a bounding box around the logo
+    [-bw]               --- switch for black-and-white the logo image
+    [-reverse_comp]     --- draw logo based on reverse complementary strand
+
+  Usage:
+      LogoGenerator -file=$REDUCE_SUITE/data/formats/psam_ex.dat -logo=sample.png

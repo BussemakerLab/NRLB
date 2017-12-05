@@ -1,0 +1,20 @@
+HTMLSummary [options] [-file=HTMLFile]
+
+  Required parameters:
+    none
+
+  Optional parameters:
+    [-output=dir_name]  --- path to an MatrixREDUCE/MotifREDUCE run directory,
+                            used both as input and output for HTML summary (./)
+    [-copy]             --- copy CSS, JavsScript and associated image files to
+                            the output directory to make the HTML self-contained
+    [-rc]               --- logo based on reverse complementary strand
+    [-width=ThumbnailImageWidthInPixel]   (145)
+    [-height=ThumbnailImageHeightInPixel] (90)
+    [-psam_list=list_of_PSAMs] --- generate a summary LOGO page for the list
+                                   of PSAMs in the file
+    [-file=HTMLFile]    --- HTML output file name (index.html)
+
+  Usage: (following a MatrixREDUCE run)
+    HTMLSummary
+    HTMLSummary -psam=psams.list -file=psams.html

@@ -1,0 +1,40 @@
+Transfactivity [options] -sequence=seqfile -measurement=measfile \
+                         -psam=one_PSAM_file | -psam_list=list_of_PSAMs |
+                         -motif=one_IUPAC_motif | -motif_list=list_of_motifs
+
+  Required parameters:
+    -sequence=seqfile      --- sequence file in FASTA format
+    -measurement=measfile  --- measurement data file in tab-delimited format
+    -psam=one_PSAM_file    --- file name of one PSAM
+    -psam_list=list_of_PSAMs --- file name containing a list of PSAMs
+    -motif=IUPAC_motif     --- one IUPAC motif
+    -motif_list=list_of_motifs --- file name containing a list of IUPAC motifs
+
+  Optional parameters:
+    [-damid]               --- short-hand form for -motif=GATC
+    [-output=dir_name]     --- path to the output directory (./)
+    [-copy]                --- copy CSS, JavsScript and image files to the above
+                               output directory to make the HTML self-contained
+    [-univariate]          --- switch to run univariate fit only
+    [-acgt]                ---  i.e., -motif_list=$REDUCE_SUITE/data/acgt.dat
+    [-resid_file=file_name] --- name of residuals
+    [-strand=integer]      ---  1 |+1 |F | L for leading strand;
+                                2 |+2 |B     for both strands; 
+                               -1 | R |C     for reverse complementary;
+                                   with -motif, default to leading strand
+                                   with -psam, default to PSAM setting
+    [-runlog=[stderr|stdout|file]]
+                           --- direct running diagnostics message to stderr,
+                               stdout or a specific file (stderr)
+    [-help]                --- print out this help message
+
+Usage:
+    Transfactivity \
+       -measurement=$REDUCE_SUITE/data/mRNA_expression/Spellman1998AlphaTimeCourse.tsv \
+       -sequence=$REDUCE_SUITE/data/sequence/YeastUpstream.fasta \
+       -psam_list=psams.list
+
+    Transfactivity \
+       -measurement=$REDUCE_SUITE/data/mRNA_expression/Spellman1998AlphaTimeCourse.tsv \
+       -sequence=$REDUCE_SUITE/data/sequence/YeastUpstream.fasta \
+       -motif_list=motifs.list

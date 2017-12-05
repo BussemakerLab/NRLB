@@ -47,3 +47,5 @@ Collate:
     'score-genome.R'
     'score-parser.R'
     'score-seq.R'
+    'zzz.R'
+    'LogoGenerator.R'

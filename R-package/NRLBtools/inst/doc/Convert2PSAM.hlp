@@ -1,0 +1,63 @@
+Convert2PSAM [options] -source=source_type -inpfile=INPUTfile -psamfile=PSAMfile
+
+  Required parameters:
+    -source=source_type   --- The following list is recognized:
+                                  1|FA    multiple sequence alignment in FASTA
+                                  2|FL    multiple sequence alignment in flat text
+                                  3|TR    entry from TRANSFAC database
+                                  4|JA    entry from JASPAR database
+                                  5|MO    from a motif sequence
+                                  6|PS    from a native PSAM
+                                  7|PW    position weight matrix
+                                  8|TA    entry in TAMO format
+    -inpfile=INPUTfile    --- name of the input file
+    -psamfile=PSAMfile    --- name of the output PSAM file
+    -pwmfile=PWMfile      --- name of simplified PWM file
+
+  Optional parameters:
+    [-idstr=string]       --- id string for the output PSAM/PWM entry
+    [-style=OUT_STYLE]    --- raw | freq | norm (norm, i.e., normalizing each column)
+    [-output=dir_name]    --- path to the output directory (./, i.e., current directory)
+    [-strand=integer]     ---  1 |+1 |F | L for leading strand;
+                               2 |+2 |B     for both strands; 
+                              -1 | R |C     for reverse complementary;
+    [-help]               --- print out this help message
+
+  Usages:
+
+   1 From multiple sequence alignment in FASTA format: raw counts/frequency
+       Convert2PSAM -source=fa -inp=$REDUCE_SUITE/data/formats/multi_align.fasta \
+                    -psam=ma2psam_raw.xml -style=raw
+       Convert2PSAM -source=fa -inp=$REDUCE_SUITE/data/formats/multi_align.fasta \
+                    -psam=ma2psam_fre.xml -style=fre
+       Convert2PSAM -source=fa -inp=$REDUCE_SUITE/data/formats/multi_align.fasta \
+                    -psam=ma2psam.xml
+
+   2 From multiple sequence alignment in flat format
+       Convert2PSAM -source=fl -inp=$REDUCE_SUITE/data/formats/multi_align.flat \
+                    -psam=fl2psam_raw.xml -style=raw
+
+   3 From TRANSFAC format
+       Convert2PSAM -source=tr -inp=$REDUCE_SUITE/data/formats/transfac.dat \
+                    -psam=tr2psam.xml
+
+   4 From JASPAR format
+       Convert2PSAM -source=ja -inp=$REDUCE_SUITE/data/formats/jaspar_ex1.dat \
+                    -psam=ja12psam.xml
+       Convert2PSAM -source=ja -inp=$REDUCE_SUITE/data/formats/jaspar_ex2.dat \
+                    -psam=ja22psam.xml
+
+   5 From a motif
+       Convert2PSAM -source=mo -inp=AAAGGNRT -psam=mo2psam.xml
+
+   6 From MatrixREDUCE v2.x PSAM
+       Convert2PSAM -source=ps -inp=$REDUCE_SUITE/data/formats/v2_psam.dat \
+                    -psam=v2psam_freq.xml -style=freq
+
+   7 From PWM
+       Convert2PSAM -source=pw -inp=$REDUCE_SUITE/data/formats/pwm_ex.dat \
+                    -psam=pw2psam.xml
+
+   8 From TAMO (as in the MacIsaac dataset)
+       Convert2PSAM -source=ta -inp=$REDUCE_SUITE/data/formats/tamo_HSF1.dat \
+                    -psam=MacIsaac_HSF1.xml -strand=2

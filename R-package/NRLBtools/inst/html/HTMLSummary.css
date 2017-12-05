@@ -1,0 +1,395 @@
+/* CSS for REDUCE Suite v2.0: Xiang-Jun Lu <xl2134@columbia.edu> */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+    font-size: small;
+    background: #fff;
+    color: black;
+}
+
+/* layout structure ------------------------------------------------------------ */
+#wrap {
+    min-width: 600px;
+    max-width: 1200px;
+}
+
+#content {
+    width: 100%;
+    font-size: 95%;
+    line-height: 1.5em;
+    color: #333;
+}
+
+#footer {
+/* background: #828377 url(footer-bg.gif) repeat-x top left; */
+    background: #eee;
+}
+
+/* header ------------------------------------------------------------ */
+#header {
+    border-bottom: 3px solid #87b825;
+    background: #b4e637 url(header-bg.gif) repeat-x top left;
+}
+
+#header h1 {
+    margin: 0;
+    padding: 8px 8px 0 8px;
+    font-family: Georgia, serif;
+    font-size: 150%;
+    color: #374c0e;
+    text-align: center;
+}
+
+#header p {
+    margin: 0;
+    padding: 0 15px;
+    font: italic normal normal 85% "Georgia, serif";
+    color: #374c0e;
+    text-align: right;
+}
+
+/* message row ------------------------------------------------------------ */
+#message {
+    margin: 0;
+    padding: 10px;
+    font-size: 90%;
+    color: #cc9;
+    text-align: center;
+    background-color: #404530
+}
+
+#message a {
+    color: #cc9;
+}
+
+/* gutters ------------------------------------------------------------ */
+#content .gutter {
+    padding: 5px 15px;
+    background: url(content-bg.gif) repeat-x top left;
+}
+
+/* content ------------------------------------------------------------ */
+#content h2 {
+    margin: 0.5em 0 0;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #ccc;
+    font-family: Georgia, serif;
+    font-size: 150%;
+    font-weight: normal;
+    color: #663;
+}
+
+#content p.cmenu {
+    margin: 0 2em;
+    padding: 0;
+    font-family: Georgia, serif;
+    font-size: 85%;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+dl.feature dt span.lmenu {
+    margin: 0 3em;
+    padding: 2px;
+    font-family: Georgia, serif;
+    font-size: 67%;
+    letter-spacing: 2px;
+    border: 1px dotted #ccc;
+}
+
+#content p {
+    padding-left: 2em;
+}
+
+dl.feature {
+    margin: 0;
+    padding: 5px;
+    border-top: 1px dashed #ccc;
+}
+
+dl.feature:after {  /* self-clearing: need IE fix */
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+dl.feature dt {
+    margin: 0 0 0.5em 0;
+    font-family: Georgia, serif;
+    font-size: 120%;
+    color: #693;
+}
+
+dl.feature dt img {
+    float: left;
+    margin: 0 15px 0 0;
+    padding: 0 4px 4px 0;
+}
+
+dl.feature dd {
+    margin-left: 472px;
+    font-size: 90%;
+    line-height: 1.5em;
+    color: #666;
+}
+
+dl.feature dd td {
+    font-family: Verdana, Arial, courier, Helvetica, sans-serif;
+}
+
+.feature p, .feature ul {
+    margin: 0;
+    padding: 0 12px;
+}
+
+.feature ul li {
+    margin: 0 0 0 12px;
+    padding: 0 0 0 18px;
+    list-style: none;
+    background: url(li-bullet.gif) no-repeat 0 3px;
+}
+
+/* footer ------------------------------------------------------------ */
+#footer p {
+    margin: 0 auto;
+    text-align: center;
+    padding: 6px;
+    font-size: 85%;
+    color: #333;
+}
+
+/* style links: LoVeHAte ------------------------------------------------------------ */
+a:link {
+    text-decoration: none;
+    color: blue;
+}
+
+a:visited {
+    text-decoration: none;
+    color: purple;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: red;
+    background: yellow;
+}
+
+a:active {
+    text-decoration: underline;
+    color: red;
+    background: green;
+}
+
+a img {
+    border: none;
+}
+
+.mtx {
+    font-size: 105%;
+    font-weight: bold;
+    font-family: Verdana, Arial, courier, Helvetica, sans-serif;
+}
+
+tt {
+    font-family: Verdana, Arial, courier, Helvetica, sans-serif;
+}
+
+.note {
+    color: blue;
+    font-weight: bold;
+}
+
+#content ul {
+    margin: 0;
+    padding: 0 0 0 2em;
+}
+
+ul li {
+    margin: 10px 0 0 0;
+    padding: 0 0 0 18px;
+    list-style: none;
+    background: url(li-bullet.gif) no-repeat 0 3px;
+}
+
+ol li {
+    margin: 10px 0 0 0;
+    padding: 0;
+    list-style: decimal outside;
+    background: none;
+}
+
+.thumbnail a img {
+    margin: 5px 6px;
+    border: 1px dashed #ccc;
+}
+
+/* --------------------required---------------------------- */
+.thumbnail a:hover {
+    background: white;
+    text-decoration: none;
+}
+
+.thumbnail a:hover img {
+    border: 1px dashed #f00;
+}
+/* ------------------------------------------------ */
+
+table.ftp td {
+    font-family: Verdana, Arial, courier, Helvetica, sans-serif;
+}
+
+td.tvalue {
+    padding-right: 1em;
+    text-align: right;
+}
+
+div.summary {
+    margin: 0 0.5em 0 2em;
+}
+
+div.summary table th {
+    text-align: center;
+}
+
+div.summary table td {
+    font-family: Verdana, Arial, courier, Helvetica, sans-serif;
+    text-align: center;
+}
+
+td.negative {
+    background: #f0ffff;   /* #f0ffff for Azure; was: blue */
+    color: black;          /* white */
+}
+
+td.positive {
+    background: #fafad2;   /* #fafad2 for LightGoldenRodYellow; was: yellow */
+    color: black;
+}
+
+th, td {
+    white-space: nowrap;
+}
+
+div.summary table td.motif-row {
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
+/* setting table ------------------------------------------------------------ */
+th, td {
+    border-right: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 3px 6px;
+}
+
+th {
+    text-align: center;
+}
+
+dl th {
+    text-align: left;
+}
+
+dl th a {
+    display: block;
+    padding: 0 15px;
+}
+
+td {
+    text-align: left;
+}
+
+.table-wrapper {
+    text-align: center;
+    margin: 16px auto;
+    width: 96%;
+    line-height: 1.5em;
+    color: black;
+    background: #919191;
+}
+
+table {
+    width: 100%;
+    position: relative;
+    top: -4px;
+    left: -4px;
+    background: white;
+
+    border-top: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-collapse: collapse;
+}
+
+.odd {
+    background-color: #e6e6e6;
+}
+
+.even {
+    background-color: white;
+}
+
+.descending {
+    color: white;
+    background: #dc8;
+}
+
+.ascending {
+    color: white;
+    background-color: #cd8;
+}
+
+th[onclick] {
+    cursor: pointer;
+}
+
+th[onclick]:hover {
+    background: #fc9;
+}
+
+th.ascending:after {
+    content: " \2193";
+}
+
+th.descending:after {
+    content: " \2191";
+}
+
+tr.ruled {
+    background-color: #c6e3ff;
+}
+
+/* Opera fix */
+head:first-child+body tr.ruled {
+    background-color: #c6e3ff;
+}
+
+.cfigure {
+    text-align: center;
+}
+
+sup, sub {
+    font-size: 65%;
+}
+
+table.ftp td, table.ftp th {
+    text-align: center;
+}
+
+h2#thumbnail, h2#matrices {
+    margin-top: 20px;
+}
+
+h2#ftable, h2#ttable, h2#ptable {
+    margin-top: 28px;
+}
+
+.markit {
+    background-color: #ffc0cb;  /* pink */
+    font-style: italic;
+}

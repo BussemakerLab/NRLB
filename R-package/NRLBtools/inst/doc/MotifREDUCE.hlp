@@ -1,0 +1,36 @@
+MotifREDUCE [options] -sequence=seqfile -measurement=measfile
+
+  Required parameters:
+    -sequence=seqfile     --- sequence file in FASTA format
+    -meas=measfile        --- measurement (expression/binding) file in tab-delimited format
+
+  Optional parameters:
+    [-topo_list=topofile]  --- name of topology file (up_to_octamers)
+    [-topo=topology]       --- single topology pattern, e.g., X3--X4
+    [-dicfile=file]        --- list of motifs to check against. IUPAC wild cards
+                                   allowed; no length limit
+    [-ntop=integer]        --- number of top seed motifs to print out (10)
+    [-iupac_pos=integer]   --- number of positions to check for IUPAC degeneracy (0)
+    [-iupac_sym=string]    --- IUPAC symbols to check against ('KMRSWYBDHVN')
+
+    [-output=dir_name]     --- path to the output directory (./)
+    [-p_value=float]       --- threshold to stop looking for new motifs (0.001)
+    [-max_motif=integer]   --- maximum # of motifs to search (20)
+    [-strand=integer]      ---  1 |+1 |F | L for leading strand;
+                                2 |+2 |B     for both strands; 
+                               -1 | R |C     for reverse complementary;
+                                0 | A |D     auto-detection (check 1 and 2) 
+
+    [-runlog=[stderr|stdout|file]]
+                           --- direct running diagnostics message to stderr, 
+                                   stdout or a specific file (stderr)   
+    [-help]                --- print out this help message
+
+  Usage:
+    mkdir -p results   # use topology file (up_to_heptamers)
+    MotifREDUCE \
+        -meas=$REDUCE_SUITE/examples/MotifREDUCE/yeast_sample.csv \
+        -sequence=$REDUCE_SUITE/examples/MotifREDUCE/genome5pns600.fasta \
+        -topo_list=$REDUCE_SUITE/examples/MotifREDUCE/up_to_heptamers \
+        -o=results
+    HTMLSummary -c -o=results
