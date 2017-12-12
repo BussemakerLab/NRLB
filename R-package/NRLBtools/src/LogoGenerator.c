@@ -28,7 +28,7 @@
 
 #include "REDUCE_Suite.h"
 
-int main(int argc, char **argv)
+int LogoGenerator_main(int argc, char **argv)
 {
     args_logo_generator args;  /* command-line options */
 
