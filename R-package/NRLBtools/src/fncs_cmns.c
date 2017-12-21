@@ -27,6 +27,7 @@
 >>>*/
 
 #include "REDUCE_Suite.h"
+#include <R.h>
 
 long is_palindrome(char *str)
 {
@@ -849,14 +850,16 @@ void fatal(char *fmt, ...)
 /* exit program with a customized error message */
 {
     va_list args;
+    char *error_message = NULL;
 
     if (strlen(fmt) > 0) {
         va_start(args, fmt);
-        vfprintf(stderr, fmt, args);
+        vasprintf(&error_message, fmt, args);
         va_end(args);
+        error(error_message);
     }
 
-    exit(1);
+    error("unspecified error\n");
 }
 
 void change_case_str_tags(long upper_case, long num, struct_tag * str_tags)

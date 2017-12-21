@@ -49,3 +49,5 @@ Collate:
     'score-seq.R'
     'zzz.R'
     'LogoGenerator.R'
+    'bigWigGenerator.R'
+

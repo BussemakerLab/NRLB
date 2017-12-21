@@ -5,6 +5,16 @@
 
 using namespace Rcpp;
 
+// LogoGenerator_cmdline
+void LogoGenerator_cmdline(std::string argstr);
+RcppExport SEXP _NRLBtools_LogoGenerator_cmdline(SEXP argstrSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type argstr(argstrSEXP);
+    LogoGenerator_cmdline(argstr);
+    return R_NilValue;
+END_RCPP
+}
 // LogoGenerator_Cpp
 void LogoGenerator_Cpp(std::string output, std::string file, std::string logo, std::string title, double ymin, double ymax);
 RcppExport SEXP _NRLBtools_LogoGenerator_Cpp(SEXP outputSEXP, SEXP fileSEXP, SEXP logoSEXP, SEXP titleSEXP, SEXP yminSEXP, SEXP ymaxSEXP) {
@@ -53,6 +63,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_NRLBtools_LogoGenerator_cmdline", (DL_FUNC) &_NRLBtools_LogoGenerator_cmdline, 1},
     {"_NRLBtools_LogoGenerator_Cpp", (DL_FUNC) &_NRLBtools_LogoGenerator_Cpp, 6},
     {"_NRLBtools_TestParseCommandLine", (DL_FUNC) &_NRLBtools_TestParseCommandLine, 1},
     {"_NRLBtools_TestParseStringVectorArgs", (DL_FUNC) &_NRLBtools_TestParseStringVectorArgs, 1},

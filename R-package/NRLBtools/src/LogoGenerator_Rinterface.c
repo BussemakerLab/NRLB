@@ -14,6 +14,7 @@ void LogoGenerator_C(char *output,
 
   set_my_globals("LogoGenerator");
   set_logo_defaults(&args);
+
   
   strcpy(args.outdir, output);
   strcpy(args.file,   file);
@@ -25,6 +26,8 @@ void LogoGenerator_C(char *output,
   printf("args.outdir='%s'\n", args.outdir);
   Gvars.PRGLOG = stdout;
   printf("Gvars.PRGLOG='%p'\n", Gvars.PRGLOG);
+  
+  check_logo_cmdline(&args);
 
   logo_psam(&args);
 }

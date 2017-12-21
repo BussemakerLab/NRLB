@@ -10,11 +10,11 @@ extern "C" {
 
 //' Run 'LogoGenerator' tool from REDUCE Suite
 //' 
-//' @param argv A commandline option string
-//' @return An optional error code
+//' @param argstr Commandline argument string
+//' @return None [return path to logo file in future?]
 //' @export
 // [[Rcpp::export]]
-void TestParseCommandLine(std::string commandline) {
+void LogoGenerator_cmdline(std::string argstr) {
   
   char toolname[100] = "LogoGenerator";
     
@@ -28,21 +28,12 @@ void TestParseCommandLine(std::string commandline) {
   char str[1000];
   char *token;
   char *rest;
-  std::strcpy(str, commandline.c_str());
+  std::strcpy(str, argstr.c_str());
   rest = str;
   while ((token = strtok_r(rest, " ", &rest))) {
     argv[argc++] = token;
-    Rprintf("token='%s' str='%s' rest='%s'\n", token, str, rest);
   }
-  Rprintf(my_arg_echo(argc, argv));
+  
+  // run LogoGenerator
   LogoGenerator_main(argc, argv);
 }
-
-
-// You can include R code blocks in C++ files processed with sourceCpp
-// (useful for testing and development). The R code will be automatically 
-// run after the compilation.
-//
-/*** R
-TestParseCommandLine("-arg1 -arg2=val2")
-*/

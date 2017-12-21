@@ -82,7 +82,7 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   if (isPDF) {
     f.name=paste0(paste(info.string,collapse="-"),".pdf")
   } else {
-    f.name=paste0(paste(info.string,collapse="-"),".png")
+    f.name=paste0(paste(info.string,collapse="-"),".eps")
   }
   if (is.null(fit.output$DB)) {
     motif = exp(as.numeric(fit.output$NB))
@@ -140,12 +140,14 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   }
   write("</psam>\n</matrix_reduce>"
         , file=temp.file.xml, append=TRUE)
-  bash.string = paste0("~/REDUCE-Suite-v2.2/bin/LogoGenerator -output=", temp.dir, " -logo=", f.name)
+  
+  # compile command argument string for call to LogoGenerator
+  bash.string = paste0("-output=", temp.dir, " -logo=", f.name)
   bash.string = paste0(bash.string, " -style=ddG -file=", temp.file.xml) 
   if (isPDF) {
     bash.string = paste(bash.string, "-format=pdf")
   } else {
-    bash.string = paste(bash.string, "-format=png")
+    bash.string = paste(bash.string, "-format=eps")
   }
   if (!is.null(title)) {
     bash.string = paste0(bash.string, " -title=",title)
@@ -153,15 +155,21 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   if (!is.null(ylim)) {
     bash.string = paste0(bash.string, " -ymin=", ylim[1], " -ymax=", ylim[2])
   }
-  system(bash.string)
+  
+  # run LogoGenerator
+  LogoGenerator_cmdline(bash.string)
+  
   if (!is.null(save.path)) {
     system(paste("mv", file.path(temp.dir, f.name), save.path))
   }
+  
   if (display && !isPDF) {
     my.file = file.path(temp.dir, f.name)
+    system(sprintf("open %s", my.file));
     im = magick::image_read(file.path(temp.dir, f.name))
     return(im)
   }
+  
   if (display && isPDF) {
     if (!is.null(save.path)) {
       if (dir.exists(save.path)) {
