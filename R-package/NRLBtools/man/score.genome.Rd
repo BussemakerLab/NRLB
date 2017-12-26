@@ -4,7 +4,8 @@
 \alias{score.genome}
 \title{Score genome with a fit}
 \usage{
-score.genome(genomicSequence, fits, index, mode = NULL, rc = FALSE)
+score.genome(genomicSequence, fits, index, mode = NULL, rc = FALSE,
+  model = NULL)
 }
 \arguments{
 \item{genomicSequence}{TO_BE_ADDED}

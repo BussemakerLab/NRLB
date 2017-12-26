@@ -13,7 +13,8 @@
 #'
 #' @export
 #' 
-score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE) {
+score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE, model=NULL) {
+  if(!is.null(model)) {fits=model$fits; index=model$index; mode=model$mode}
   #Create sequences for rapid scoring
   fSeq = abs(toComplex(genomicSequence, c(A=1, C=2, G=3, T=4, N=0)))
   rSeq = abs(toComplex(reverseComplement(genomicSequence), c(A=1, C=2, G=3, T=4, N=0)))

@@ -4,12 +4,13 @@
 \alias{create.bigwig}
 \title{Read in binary files containing genomic scoring results}
 \usage{
-create.bigwig(profiles, model, bwfile, truncate.tol = 1e-04)
+create.bigwig(profiles, file, model, truncate.tol = 1e-04,
+  normalize = "model")
 }
 \arguments{
 \item{profiles}{Raw genomic score profiles, created using \code{fetch.genomic.profiles}}
 
-\item{bwfile}{Name of the bigwig file that is to be created.}
+\item{file}{Name of the bigwig file that is to be created.}
 
 \item{truncate.tol}{Cutoff below which affinities are assumed to be zero.}
 
@@ -22,5 +23,13 @@ None
 Read in binary files containing genomic scoring results
 }
 \examples{
+
+m = NRLBtools::hox.models()$ExdScr
+gp = fetch.genomic.profiles("http://bussemakerlab.org/NRLB/dm3/ExdScr", 
+                            genome = BSgenome.Dmelanogaster.UCSC.dm3, 
+                            model = m, 
+                            chr.names = c("chrXHet", "chrYHet"))
+
+create.bigwig(profiles = gp, file = tempfile(fileext=".bw"), model = m)
 
 }

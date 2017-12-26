@@ -11,7 +11,8 @@
 #'
 #' @export
 #' 
-optimal.site <- function(fits, index, mode = NULL) {
+optimal.site = function(fits, index, mode = NULL, model=NULL) {
+  if(!is.null(model)) {fits=model$fits; index=model$index; mode=model$mode}
   #Get betas and transform them into a matrix
   fit = fits[[2]][[index]]
   k = fits[[1]]$k[index]
@@ -81,5 +82,7 @@ optimal.site <- function(fits, index, mode = NULL) {
     }
     char.list = temp.list
   }
-  return(data.frame(score=exp(max(max.list)), seq=char.list[which.max(max.list)], stringsAsFactors = FALSE))
+  return(data.frame(score = exp(max(max.list)), 
+                    seq   = char.list[which.max(max.list)], 
+                    stringsAsFactors = FALSE))
 }

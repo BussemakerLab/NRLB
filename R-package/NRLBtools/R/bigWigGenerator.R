@@ -2,48 +2,54 @@
 #' 
 #' @param profiles Raw genomic score profiles, created using \code{fetch.genomic.profiles}
 #' @param footprint Footprint size of the NRLB model that was used to generate the genomic profile.
-#' @param bwfile Name of the bigwig file that is to be created.
+#' @param file Name of the bigwig file that is to be created.
 #' @param truncate.tol Cutoff below which affinities are assumed to be zero.
 #'
 #' @return None
 #' 
 #' @examples
+#' 
+#' m = NRLBtools::hox.models()$ExdScr
+#' gp = fetch.genomic.profiles("http://bussemakerlab.org/NRLB/dm3/ExdScr", 
+#'                             genome = BSgenome.Dmelanogaster.UCSC.dm3, 
+#'                             model = m, 
+#'                             chr.names = c("chrXHet", "chrYHet"))
+#' 
+#' create.bigwig(profiles = gp, file = tempfile(fileext=".bw"), model = m)
 #'
 #' @export
 #' 
-create.bigwig = function(profiles, model, bwfile, truncate.tol = 1E-4) {
+create.bigwig = function(profiles, file, model, truncate.tol = 1E-4, normalize = "model") {
 
-  k = NRLBtools::footprint.size(model)
-  chrs = names(profiles)
-
-  #First compute genomic max
-  score.max = 0
-  for (chr in chrs) {
-    scores = rbind(profiles[[chr]]$fwd, profiles[[chr]]$rev)
-    currMax = max(scores)
-    if (currMax > score.max) {
-      score.max = currMax
-    }
+  if (normalize == "genome") {
+    reference.score = NRLBtools::genomic.max(profiles)
+    cat("normalizing scores by genomic maximum\n")
+  } else if (normalize == "model") {
+    reference.score = NRLBtools::optimal.site(model$fits, model$index, model$mode)$score
+  } else {
+    error("normalize argument needs to be 'model' or 'genome'")
   }
-  cat("Maximum score in genome = ", score.max)
+  
+  k = NRLBtools::footprint.size(model)
   
   #Filter, create GRanges object, and store bigWig file
   currOut = GRanges()
-  for (currChr in chrs) {
-    scores = rbind(profiles[[chr]]$fwd, profiles[[chr]]$rev)
-    currScores = colSums(scores/score.max)
+  for (currChr in names(profiles)) {
+    scores = rbind(profiles[[currChr]]$fwd, profiles[[currChr]]$rev)
+    currScores = colSums(scores) # add FWD and REV scores
+    currScores = currScores / reference.score # normalize
     currScores = signif(currScores, 5)
-    idx = currScores<=truncate.tol                                          #Truncate
+    idx = currScores<=truncate.tol #Truncate
     currScores[idx] = 0
     chr.length = length(currScores) + k - 1
-    processedScores = numeric(length = chr.length)           #Create windows
+    processedScores = numeric(length = chr.length) #Create windows
     processedScores[1:k] = currScores[1]
     for (i in 2:length(currScores)) {
       if (processedScores[i] < currScores[i]) {
         processedScores[i:(i+k-1)] = currScores[i]
       }
     }
-    idx = processedScores==0                                                #Remove NAs
+    idx = processedScores==0 #Remove NAs
     processedScores[idx] = NA
     pos = 1:length(processedScores)
     processedScores = cbind(pos, processedScores)
@@ -59,5 +65,19 @@ create.bigwig = function(profiles, model, bwfile, truncate.tol = 1E-4) {
     names(seqLen) = currChr
     currOut = append(currOut, GRanges(seqnames=currChr, ranges=IRanges(start=fStrand[,1], end=fStrand[,2]), strand="*", seqlengths=seqLen, score=fStrand[,3]))
   }
-  export.bw(currOut, bwfile)
+  export(currOut, file)
+}
+
+#' Maximum NRLB score in genomic profile
+#' 
+#' @param profiles Raw genomic score profiles, created using \code{fetch.genomic.profiles}
+#'
+#' @return Maximumover all chromosomes and both binding directions
+#' 
+#' @examples
+#'
+#' @export
+#' 
+genomic.max = function(profiles) {
+  max(sapply(profiles, function(x) max(x$fwd, x$rev)))
 }
