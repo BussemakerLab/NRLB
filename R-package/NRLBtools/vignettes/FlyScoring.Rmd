@@ -39,7 +39,7 @@ NRLBtools::logo(m$fits, m$index, m$mode)
 Finally, we can created an affinity profile along the E3N enhancer as follows:
 ```{r, fig.show='asis'}
 model = models$ExdScr
-NRLBtools::nrlb.plot.score.genome(enh$E3N$seq,
-                                  m$fits, m$index, m$mode,
+NRLBtools::nrlb.plot.score.genome(enh$E3N$seq, 
+                                  m$fits, m$index, m$mode, 
                                   nPeaks = 10, annotate = TRUE)
 ```

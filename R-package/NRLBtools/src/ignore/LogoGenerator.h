@@ -1,0 +1,1 @@
+int main_LogoGenerator(int argc, char *argv[]);

@@ -33,8 +33,7 @@
 #'
 #' @export
 #' 
-logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL, save.path=NULL, isPDF=FALSE, title=NULL, ylim=NULL, fit.name=NULL,
-                l.pad=0, r.pad=0, l.del=0, r.del=0) {
+logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL, save.path=NULL, isPDF=FALSE, title=NULL, ylim=NULL, fit.name=NULL, l.pad=0, r.pad=0, l.del=0, r.del=0) {
   if (is.null(fit.name)) {
     fit.name = deparse(substitute(fits))
     fit.name = gsub("\\$", ".", fit.name) # avoid substitution in system call
@@ -87,9 +86,9 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   if (is.null(fit.output$DB)) {
     motif = exp(as.numeric(fit.output$NB))
   } else {
-    max.values = max.seq(fits, index, mode)
-    rescale = as.numeric(max.values[1])
-    top.string = strsplit(as.character(max.values[2]), split="")[[1]]
+    optimal = optimal.site(fits, index, mode)
+    rescale = as.numeric(optimal[1])
+    top.string = strsplit(as.character(optimal[2]), split="")[[1]]
     PSAM = matrix(data = NA, nrow=4, ncol=length(top.string))
     row.names(PSAM) = c("A", "C", "G", "T")
     
@@ -165,7 +164,6 @@ logo = function(fits, index=NULL, mode=NULL, rc=FALSE, display=TRUE, betas=NULL,
   
   if (display && !isPDF) {
     my.file = file.path(temp.dir, f.name)
-    system(sprintf("open %s", my.file));
     im = magick::image_read(file.path(temp.dir, f.name))
     return(im)
   }

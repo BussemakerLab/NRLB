@@ -17,8 +17,7 @@
 #'
 #' @export
 #' 
-nrlb.plot.score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE, nPeaks=NULL, annotate=FALSE, rescale=NULL, 
-                             genomicSequence2=NULL) {
+nrlb.plot.score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FALSE, nPeaks=NULL, annotate=FALSE, rescale=NULL, genomicSequence2=NULL) {
   seq.string = deparse(substitute(genomicSequence))
   fit.string = deparse(substitute(fits))
   score = score.genome(genomicSequence, fits, index, mode, rc)
@@ -28,7 +27,7 @@ nrlb.plot.score.genome = function(genomicSequence, fits, index, mode=NULL, rc=FA
     k = as.numeric(fits[[1]]$k[index])
   }
   if (is.null(rescale)) {
-    rescale = max.seq(fits, index, mode)$MaxAffinity
+    rescale = optimal.site(fits, index, mode)$score
   }
   score = score/rescale
   max.score = max(score)
