@@ -28,7 +28,9 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Collate: 
+    'zzz.R'
     'RcppExports.R'
+    'model-properties.R'
     'animate-traj.R'
     'file-parser.R'
     'fly-enhancers.R'
@@ -44,7 +46,6 @@ Collate:
     'rel-aff.R'
     'score-genome.R'
     'score-seq.R'
-    'zzz.R'
     'LogoGenerator.R'
     'bigWigGenerator.R'
     'optimal-site.R'

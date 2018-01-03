@@ -1,23 +1,3 @@
-
-
-#' Footprint size associated with model
-#' 
-#' @param model NRLB model
-#'
-#' @return Footprint size in bp
-#' 
-#' @examples
-#' 
-#' m = NRLBtools::hox.models()$ExdScr
-#' NRLBtools::footprint.size(m)
-#'
-#' @export
-#' 
-footprint.size = function(model) {
-  nchar(NRLBtools::optimal.site(model$fits, model$index, model$mode)$seq)
-}
-
-
 #' Fetch pre-computed genomic score profiles
 #' 
 #' @param genome Complete genome sequence in BSgenome format
@@ -65,6 +45,21 @@ fetch.genomic.profiles = function(url.prefix, genome, model, chr.names = NULL) {
   })
   names(result) = chr.names
   return(result)
+}
+
+
+#' Maximum NRLB score in genomic profile
+#' 
+#' @param profiles Raw genomic score profiles, created using \code{fetch.genomic.profiles}
+#'
+#' @return Maximumover all chromosomes and both binding directions
+#' 
+#' @examples
+#'
+#' @export
+#' 
+genomic.max = function(profiles) {
+  max(sapply(profiles, function(x) max(x$fwd, x$rev)))
 }
 
 

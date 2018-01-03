@@ -76,17 +76,3 @@ create.bigwig.chaitanya = function(profiles, file, model=NULL, truncate.tol = 1E
   }
   export(currOut, file)
 }
-
-#' Maximum NRLB score in genomic profile
-#' 
-#' @param profiles Raw genomic score profiles, created using \code{fetch.genomic.profiles}
-#'
-#' @return Maximumover all chromosomes and both binding directions
-#' 
-#' @examples
-#'
-#' @export
-#' 
-genomic.max = function(profiles) {
-  max(sapply(profiles, function(x) max(x$fwd, x$rev)))
-}
