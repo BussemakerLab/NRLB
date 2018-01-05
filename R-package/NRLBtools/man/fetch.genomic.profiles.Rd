@@ -2,7 +2,7 @@
 % Please edit documentation in R/genomic-profiles.R
 \name{fetch.genomic.profiles}
 \alias{fetch.genomic.profiles}
-\title{Fetch pre-computed genomic score profiles}
+\title{Fetch pre-computed genomic score profiles as nested list object}
 \usage{
 fetch.genomic.profiles(url.prefix, genome, model, chr.names = NULL)
 }
@@ -19,7 +19,7 @@ fetch.genomic.profiles(url.prefix, genome, model, chr.names = NULL)
 A nested list containing forward and reverse NRLB score profiles for each chromosome.
 }
 \description{
-Fetch pre-computed genomic score profiles
+Fetch pre-computed genomic score profiles as nested list object
 }
 \examples{
 
