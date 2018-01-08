@@ -1,11 +1,11 @@
 file	index	mode	rc
 ExdLab Lab.csv 14 1	TRUE
 ExdPb Pb.csv 21 2	TRUE
-ExdDfd Dfd.csv 7 1	FALSE
-ExdScr Scr.csv 7 1	FALSE
-ExdAntp Antp.csv 8 1	FALSE
-ExdUbxIa UbxIa.csv 14 1	FALSE
-ExdUbxIVa UbxIVa.csv 10 1	TRUE
+ExdDfd Dfd.csv 7 1	TRUE
+ExdScr Scr.csv 7 1	TRUE
+ExdAntp Antp.csv 8 1	TRUE
+ExdUbxIa UbxIa.csv 14 1	TRUE
+ExdUbxIVa UbxIVa.csv 10 1	FALSE
 ExdAbdA AbdA.csv 7 1	FALSE
 ExdAbdB AbdB.csv 7 1	FALSE
 Exd	Exd_Monomer.csv	17	0	TRUE
