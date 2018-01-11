@@ -35,25 +35,27 @@ NRLBtools::logo(m$fits, m$index, m$mode, m$rc)
 ```
 
 ## Visualizing affinity profiles for enhancers
-Finally, we can created an affinity profile along the E3N enhancer as follows:
+An affinity profile along the E3N enhancer can be created as follows:
 ```{r, fig.show='asis'}
 NRLBtools::nrlb.plot.score.genome(enh$E3N$seq, 
                                   m$fits, m$index, m$mode, m$rc,
                                   nPeaks = 10, annotate = TRUE)
 ```
+
 ## Working with genome-wide tracks and bigwig files
-For each available fly model, the corresponding genomewide, base-pair-resultion, affinity profile has been precomputed and is available on the Bussemaker Lab webserver (the plan is to add functionality to generate these genomewide affinity profiles within the \code{NRLBtools} package, but this require some significant work, as the current scoring using \code{NRLBtools::score.genome} is too slow).
+For each available fly model, the corresponding genomewide, base-pair-resultion, affinity profile has been precomputed and is available on the Bussemaker Lab webserver (the plan is to add functionality to generate these genomewide affinity profiles within the `NRLBtools` package, but this require significant work, as the current scoring using `NRLBtools::score.genome` is too slow).
 
-The precomputed affinity profiles can be fetched from the server in two different formats using \code{fetch.genomic.profiles} or \code{fetch.tracks}. Here, we will illustrate how to create bigwig files using the latter function.
+The precomputed affinity profiles can be fetched from the server in two different formats using `fetch.genomic.profiles` or `fetch.tracks`. Here, we will illustrate how to create bigwig files using the latter function.
 
-The first step is to fetch the track, in the form of a \code{GRanges} object, this will take several minutes):
+The first step is to fetch the track, in the form of a `GRanges` object (this may   take several minutes when the `chr.names` option is omitted and profiles for all chromosomes are fetched):
 ```{r}
 library(BSgenome.Dmelanogaster.UCSC.dm3)
 gr = NRLBtools::fetch.as.track("http://bussemakerlab.org/NRLB/dm3/ExdScr", 
-                    genome = BSgenome.Dmelanogaster.UCSC.dm3, chr.names = c("chrXHet", "chrYHet"),
+                    genome = BSgenome.Dmelanogaster.UCSC.dm3, 
+                    chr.names = c("chrXHet", "chrYHet"),
                     model = m, normalize = "model")
 ```
-Note that \code{gr}  contains relative affinity scores for multiple chromosomes and both strands:
+Note that `gr` contains relative affinity scores for multiple chromosomes and both strands:
 ```{r}
 gr
 ```
@@ -61,11 +63,11 @@ It is important to understand how the affinity scores are normalized. First of a
 ```{r}
 NRLBtools::optimal.site(m$fits, m$index, m$mode)
 ```
-To make the absolute NRLB score more meaningful, it should be properly normalized when constructing genomic tracks. By setting \code{normalize = "model"} in \code{fetch.tracks}, the scores in \code{gr} are normalized relative to the theoretically optimal site. This site may occur in the genome or it may not, so the genomewide maximum of \code{score(gr)} in general is somewhere between zero and one:
+To make the absolute NRLB score more meaningful, it should be properly normalized when constructing genomic tracks. The default behavior of `fetch.as.track` is to normalize the affinities by the genomidewide maximum. Alternatively, by setting `normalize = "model"` in `fetch.as.track`, we can achieve that the scores in `gr` are normalized relative to the theoretically optimal site. The optimal site may not occur in the genome, and therefore the genomewide maximum of `score(gr)` can be smaller than one with this normalization:
 ```{r}
 range(score(gr))
 ```
-It can be useful to save the track as a BigWig file for use in other applications. Note that the \code{gr} object above specifies the exact start and end of the binding site as an integer range. Overlapping ranges are not allowed in BigWig files, so we need to attribute the binding score for each window to a single genomic position by setting the width of the ranges to one:
+It can be useful to save the track as a BigWig file for use in other applications. Note that the `gr` object above specifies the exact start and end of the binding site as an integer range. Overlapping ranges are not allowed in BigWig files, so we need to attribute the binding score for each window to a single genomic position by setting the width of the ranges to one:
 ```{r}
 gr.new = gr
 width(gr.new) = 1
