@@ -1,0 +1,10 @@
+To run NRLB on OSX or Linux, ensure that Java 1.8 or higher is installed and is on your path. 
+To run NRLB, you need to create a data configuration and run configuration file and pass them as arguments to runNRLB.sh.
+The DataConfig.txt and NRLBConfig.txt files are set up to run NRLB on sub-sampled data for Human MAX used in the paper. The example can be run by executing
+
+./runNRLB.sh DataConfig.txt NRLBConfig.txt
+
+The pentamer shape tables in shape/ are provided courtesy the Remo Rohs lab and should be cited as follows:
+Zhou,T., Yang,L., Lu,Y., Dror,I., Dantas Machado,A.C., Ghane,T., Di Felice,R. and Rohs,R. (2013) DNAshape: a method for the high-throughput prediction of DNA structural features on a genomic scale. Nucleic Acids Res., 41, W56-W62.
+
+Portions of NRLB rely on JAMA, a Java-based linear algebra package from NIST. It can be found here: https://math.nist.gov/javanumerics/jama/
