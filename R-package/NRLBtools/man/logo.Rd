@@ -2,50 +2,57 @@
 % Please edit documentation in R/logo.R
 \name{logo}
 \alias{logo}
-\title{Generate PSAM}
+\title{Generate a PSAM/Energy Logo}
 \usage{
-logo(fits, index = NULL, mode = NULL, rc = FALSE, display = TRUE,
-  betas = NULL, save.path = NULL, isPDF = FALSE, title = NULL,
-  ylim = NULL, fit.name = NULL, l.pad = 0, r.pad = 0, l.del = 0,
-  r.del = 0)
+logo(models, index = NULL, mode = NULL, rc = FALSE, betas = NULL,
+  title = NULL, ylim = NULL, l.pad = 0, r.pad = 0, l.del = 0,
+  r.del = 0, nrlb.model = NULL)
 }
 \arguments{
-\item{fits}{TO_BE_ADDED}
+\item{models}{an NRLB model object.}
 
-\item{index}{TO_BE_ADDED}
+\item{index}{numeric indicating the index of the model in the NRLB model object to be visualized. Required when providing a NRLB model object.}
 
-\item{mode}{TO_BE_ADDED}
+\item{mode}{numeric indicating the mode of a multi-mode model to be visualized. Required when attempting to visualize a multi-mode model.}
 
-\item{rc}{TO_BE_ADDED}
+\item{rc}{logical indicating that the reverse complement of the model should be displayed.}
 
-\item{display}{TO_BE_ADDED}
+\item{betas}{A \eqn{4l} long numeric vector containing the energy parameters associated with a mononucleotide model with footprint length \eqn{l}.}
 
-\item{betas}{TO_BE_ADDED}
+\item{title}{text string to print on top of the energy logo.}
 
-\item{save.path}{TO_BE_ADDED}
+\item{ylim}{numeric vector of length 2 giving the range of energy values to plot.}
 
-\item{isPDF}{TO_BE_ADDED}
+\item{l.pad}{numeric indicating the number of empty base pairs to add the left of the energy logo.}
 
-\item{title}{TO_BE_ADDED}
+\item{r.pad}{numeric indicating the number of empty base pairs to add the right of the energy logo.}
 
-\item{ylim}{TO_BE_ADDED}
+\item{l.del}{numeric indicating the number of base pairs to remove from the left of the energy logo.}
 
-\item{fit.name}{TO_BE_ADDED}
+\item{r.del}{numeric indicating the number of base pairs to remove from the right of the energy logo.}
 
-\item{l.pad}{TO_BE_ADDED}
-
-\item{r.pad}{TO_BE_ADDED}
-
-\item{l.del}{TO_BE_ADDED}
-
-\item{r.del}{TO_BE_ADDED}
+\item{nrlb.model}{numeric index of the pre-built NRLB model to visualize. Use \code{model.info} to find the model index. When provided, all other
+parameters are overriden.}
 }
 \value{
-TO_BE_ADDED
+an energy logo image.
 }
 \description{
-Generate PSAM
+A function used to visualize models as energy logos.
+}
+\details{
+This function will only plot a single energy logo at a time; when attempting to visualize a multi-mode model, the individual modes of the 
+model must be visualized separately. When attempting to visualize a model with both mononucelotide and dinucleotide features, the resulting energy
+logo represents a mononucleotide approximation of the true model. 
+
+\code{betas} can be used to provide explicit values for plotting energy parameters. The numeric vector must provide values for all four bases for
+every position sequentially. For example, to plot a 3 bp logo, the following vector must be passed: \deqn{{A_1, C_1, G_1, T_1, A_2, C_2, G_2, T_2, 
+A_3, C_3, G_3, T_3}}
 }
 \examples{
+logo(nrlb.models = 25)
+
+m = NRLBtools::load.models(fileName = system.file("extdata", "MAX-NRLBConfig.csv", package = "NRLBtools"))
+logo(models = m, index = 8)
 
 }

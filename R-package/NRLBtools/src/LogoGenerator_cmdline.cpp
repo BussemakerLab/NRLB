@@ -4,16 +4,10 @@ using namespace Rcpp;
 #include <string.h>
 
 extern "C" {
-  #include "my_hello.h"
   #include "LogoGenerator_Rinterface.h"
 }
 
-//' Run 'LogoGenerator' tool from REDUCE Suite
-//' 
-//' @param argstr Commandline argument string
-//' @return None [return path to logo file in future?]
-//' @export
-// [[Rcpp::export]]
+// [[Rcpp::export(.LogoGenerator)]]
 void LogoGenerator_cmdline(std::string argstr) {
   
   char toolname[100] = "LogoGenerator";

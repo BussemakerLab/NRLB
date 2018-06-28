@@ -9,89 +9,52 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette defines a set of fly enhancers, loads DNA binding specificity models for various Hox complexes, and then visualizes Hox binding affinity profiles along the enhancers. It is related to the paper on the No Read Left Behind (NRLB) algorithm by Rastogi et al., which is currently in revision.
+This vignette shows how to use the NRLBtools package. It is related to the paper on the No Read Left Behind (NRLB) algorithm by Rastogi et al., PNAS (2018).
 
-## Defining fly enhancers
-We start by defining a number of fly enhancers that were used in the NRLB paper. We will only be using the E3N in this vignette, but the others are included for reference. Note that the version of the fly genome used here is the somewhat outdated `dm3`. The coordinates are only 'guaranteed' to be correct for `dm3`.
-```{r}
-enh = NRLBtools::fly.enhancers()
-names(enh)
-enh$E3N
-```
 ## Working with NRLB models for DNA binding specificity
-The \code{NRLBtools} package makes it easy to use the DNA binding specicity models that were built from SELEX-seq in vitro binding data using the NRLB algorithm. For now, only the fly ExdHox models are included, but we will add other models in the future. The fly models can be loaded as follows:
+The \code{NRLBtools} package makes it easy to use the DNA binding specicity models that were built from SELEX in vitro binding data using the NRLB algorithm and as described in the Rastogi et al., PNAS (2018) paper. The available models are:
 ```{r}
-models = NRLBtools::hox.models()
-names(models)
+library(NRLBtools)
+NRLBtools::model.info()
 ```
 ## Energy Logo
-Let us select a model for a specific heterodimer from our model collection:
+It is always a good idea to visualize the model as an energy logo before using it. We can visualize the Exd-UbxIVa model used in the paper by using the logo function and its model number (16 in this case):
 ```{r}
-m = NRLBtools::hox.models()$ExdScr
+NRLBtools::logo(nrlb.model = 16)
 ```
-It is always a good idea to visualize the model as an energy logo before using it:
+We can actually use model.info to provide more information about the NRLB models that come with this package. For example, we can see that model number 16 is a multi-mode model with two modes:
 ```{r}
-NRLBtools::logo(m$fits, m$index, m$mode, m$rc)
+NRLBtools::model.info(nrlb.model = 16)
 ```
 
 ## Visualizing affinity profiles for enhancers
+We start by extracting the sequence underlying the genomic region of interest. Here, we will only use the E3N enhancer element (as shown in the paper) from the dm3 Drosophila genome: 
+```{r}
+enh = as.character(BSgenome.Dmelanogaster.UCSC.dm3::BSgenome.Dmelanogaster.UCSC.dm3$chrX[4915195:4915486])
+```
 An affinity profile along the E3N enhancer can be created as follows:
 ```{r, fig.show='asis'}
-NRLBtools::nrlb.plot.score.genome(enh$E3N$seq, 
-                                  m$fits, m$index, m$mode, m$rc,
-                                  nPeaks = 10, annotate = TRUE)
+NRLBtools::score.seq(sequence = enh, nrlb.model = 16, plot = TRUE, nPeaks = 10, annotate = TRUE)
 ```
 
-## Working with genome-wide tracks and bigwig files
-For each available fly model, the corresponding genomewide, base-pair-resultion, affinity profile has been precomputed and is available on the Bussemaker Lab webserver (the plan is to add functionality to generate these genomewide affinity profiles within the `NRLBtools` package, but this require significant work, as the current scoring using `NRLBtools::score.genome` is too slow).
-
-The precomputed affinity profiles can be fetched from the server in two different formats using `fetch.genomic.profiles` or `fetch.tracks`. Here, we will illustrate how to create bigwig files using the latter function.
-
-The first step is to fetch the track, in the form of a `GRanges` object (this may   take several minutes when the `chr.names` option is omitted and profiles for all chromosomes are fetched):
+## Working with new models
+The NRLBtools package can also be used to interpret new NRLB models fit to SELEX data. To do so, one first needs to download NRLB from https://github.com/BussemakerLab/NRLB. For the following example, we will be using the precomputed results of running the default fit detailed in the README file. We begin by loading the CSV model results file, which contains all the relevant model information in a machine-readable format:
 ```{r}
-library(BSgenome.Dmelanogaster.UCSC.dm3)
-gr = NRLBtools::fetch.as.track("http://bussemakerlab.org/NRLB/dm3/ExdScr", 
-                    genome = BSgenome.Dmelanogaster.UCSC.dm3, 
-                    chr.names = c("chrXHet", "chrYHet"),
-                    model = m, normalize = "model")
+max = NRLBtools::load.models(fileName = system.file("extdata", "MAX-NRLBConfig.csv", package = "NRLBtools"))
 ```
-Note that `gr` contains relative affinity scores for multiple chromosomes and both strands:
+Next, we can use model info to explore the types of models that are stored in this object:
 ```{r}
-gr
+NRLBtools::model.info(models = max)
 ```
-It is important to understand how the affinity scores are normalized. First of all, the scale of the affnities predicted by NRLB models is currently arbitrary. This means that only ratios between two different DNA sequences are meaningful. For instance, consider the optimal binding site for ExdScr, which can be determined as follows using dynamics programming, and note that the NRLB score for this optimal site is not equal to one. 
+We can get more information about a particular model by providing the model's row index:
 ```{r}
-NRLBtools::optimal.site(m$fits, m$index, m$mode)
+NRLBtools::model.info(models = max, index = 8)
 ```
-To make the absolute NRLB score more meaningful, it should be properly normalized when constructing genomic tracks. The default behavior of `fetch.as.track` is to normalize the affinities by the genomidewide maximum. Alternatively, by setting `normalize = "model"` in `fetch.as.track`, we can achieve that the scores in `gr` are normalized relative to the theoretically optimal site. The optimal site may not occur in the genome, and therefore the genomewide maximum of `score(gr)` can be smaller than one with this normalization:
+We can also visualize our new model:
 ```{r}
-range(score(gr))
+NRLBtools::logo(models = max, index = 8)
 ```
-It can be useful to save the track as a BigWig file for use in other applications. Note that the `gr` object above specifies the exact start and end of the binding site as an integer range. Overlapping ranges are not allowed in BigWig files, so we need to attribute the binding score for each window to a single genomic position by setting the width of the ranges to one:
+And use the model to score a sequence:
 ```{r}
-gr.new = gr
-width(gr.new) = 1
-gr.new
-```
-Note that this assigns the affinity to the 5'-most position for windows on the forward strand and to the 3'-most position on the reverse strand. An alternative choice (which we recommend) would be to always assign the score to the 5'-most position as follows:
-```{r}
-gr.new = gr
-end(gr.new[strand(gr.new)=="+"]) = start(gr.new[strand(gr.new)=="+"])
-start(gr.new[strand(gr.new)=="-"]) = end(gr.new[strand(gr.new)=="-"])
-gr.new
-```
-Bigwig files also do not support strand-specific tracks, so we need to separately save the forward and reverse strand profiles. Moreover, the full genome-wide tracks are too large to be saved in their entirety, and we will want to exclude positions with scores below some (low) threshold. This can be achieved as follows:
-```{r}
-end(gr[strand(gr)=="+"]) = start(gr[strand(gr)=="+"])
-start(gr[strand(gr)=="-"]) = end(gr[strand(gr)=="-"])
-bwfile.fwd = tempfile("ExdScr_fwd_", fileext=".bw")
-export(gr[score(gr) > 1E-4 & strand(gr)=="+"], bwfile.fwd)
-bwfile.rev = tempfile("ExdScr_rev_", fileext=".bw")
-export(gr[score(gr) > 1E-4 & strand(gr)=="+"], bwfile.fwd)
-```
-By loading these files we can check that the affinities are all above threshold:
-```{r}
-bw = import(bwfile.fwd)
-bw
-range(score(bw))
+NRLBtools::score.seq(sequence = enh, models = max, index = 8, plot = T)
 ```

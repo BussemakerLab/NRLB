@@ -11,17 +11,13 @@ Description:
     The models contained in this package were derived from SELEX-seq data.
 Encoding: UTF-8
 LazyData: true
+Depends:
+    ggplot2
 Imports:
     Rcpp (>= 0.12.13),
     magick,
-    ggplot2,
     Biostrings
 LinkingTo: Rcpp
-Depends: 
-    IRanges, 
-    GenomicRanges, 
-    BSgenome.Dmelanogaster.UCSC.dm3,
-    GenomeInfoDb
 License: GPL-3
 RoxygenNote: 6.0.1
 Suggests: 
@@ -31,24 +27,8 @@ VignetteBuilder: knitr
 Collate: 
     'zzz.R'
     'RcppExports.R'
-    'model-properties.R'
-    'animate-traj.R'
-    'file-parser.R'
-    'fly-enhancers.R'
-    'hox-models.R'
+    'load-models.R'
     'logo.R'
-    'motif-aligner.R'
-    'order-fit-results.R'
     'package-NRLBtools.R'
-    'plot-R0-qq.R'
-    'plot-compare.R'
-    'plot-likelihoods.R'
-    'print-fit.R'
-    'rel-aff.R'
-    'score-genome.R'
+    'model-info.R'
     'score-seq.R'
-    'LogoGenerator.R'
-    'bigWigGenerator.R'
-    'optimal-site.R'
-    'genomic-profiles.R'
-    'plot-score-genome.R'

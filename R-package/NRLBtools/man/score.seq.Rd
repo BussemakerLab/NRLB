@@ -2,31 +2,53 @@
 % Please edit documentation in R/score-seq.R
 \name{score.seq}
 \alias{score.seq}
-\title{Score DNA sequence using a model}
+\title{Score sequences with a model}
 \usage{
-score.seq(sequence, rSequence, k, isDinuc, nuc, dinuc)
+score.seq(sequence, models, index = NULL, mode = NULL, rc = FALSE,
+  rescale = 1, plot = FALSE, nPeaks = NULL, annotate = FALSE,
+  nrlb.model = NULL)
 }
 \arguments{
-\item{sequence}{TO_BE_ADDED}
+\item{sequence}{a text string containing the DNA sequence to be evaluated.}
 
-\item{rSequence}{TO_BE_ADDED}
+\item{models}{an NRLB model object.}
 
-\item{k}{TO_BE_ADDED}
+\item{index}{numeric indicating the index of the model in the NRLB model object to be used for scoring. Required when providing a NRLB model object.}
 
-\item{isDinuc}{TO_BE_ADDED}
+\item{mode}{numeric indicating the mode of a multi-mode model to be used for scoring. Required when attempting to score with a multi-mode model.}
 
-\item{nuc}{TO_BE_ADDED}
+\item{rc}{logical indicating that the reverse complement of the model should be used when scoring the sequence.}
 
-\item{dinuc}{TO_BE_ADDED}
+\item{rescale}{a numeric value to divide all displayed or output relative affinities by. Default value is 1.}
+
+\item{plot}{logical indicating whether the affinity scores along the sequence should be visualized in a plot (\code{true}) or output as a numeric matrix
+(\code{false}).}
+
+\item{nPeaks}{if \code{plot=T}, the number of highest-affinity peaks to identify within the sequence; prints the rescaled relative affinity, relative
+position, and sequence of the peaks in descending order of affinity.}
+
+\item{annotate}{if \code{plot=T} and \code{nPeaks>0}, numbers \code{nPeaks} within the affinity plot in descending order of relative affinity.}
+
+\item{nrlb.model}{numeric index of the pre-built NRLB model to visualize. Use \code{model.info} to find the model index. When provided, all other
+model input and selection arguments are overriden.}
 }
 \value{
-TO_BE_ADDED
+if \code{plot=F}, a numeric matrix of relative affinities, if \code{plot=T}, a ggplot2 plot object.
 }
 \description{
-Score DNA sequence using a model
+A function that computes relative affinities at every possible offset within a DNA sequence. It return either the raw values or display them
+in a plot.
 }
-\note{
-requires explicit nuc, dinuc formatting (mode independent)
+\details{
+For an input sequence of length \eqn{l}, the selected model is evaluated at \eqn{l-k+1} positions on both the forward and reverse strands. Here, k 
+refers to the footprint size of the model. The position value in the plots and output matrix corresponds to the leftmost base in the model. For example, 
+if you have a 4 bp long model evaluated on a 6 bp long sequence ACGTTG, the model will be evaluated at 3 positions on the forward strand: 
+\tabular{cc}{
+Position \tab Sequence \cr
+1 \tab ACGT \cr
+2 \tab CGTT \cr
+3 \tab GTTG \cr
+}
 }
 \examples{
 

@@ -30,44 +30,10 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// TestParseCommandLine
-void TestParseCommandLine(std::string commandline);
-RcppExport SEXP _NRLBtools_TestParseCommandLine(SEXP commandlineSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type commandline(commandlineSEXP);
-    TestParseCommandLine(commandline);
-    return R_NilValue;
-END_RCPP
-}
-// TestParseStringVectorArgs
-void TestParseStringVectorArgs(Rcpp::StringVector arguments);
-RcppExport SEXP _NRLBtools_TestParseStringVectorArgs(SEXP argumentsSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::StringVector >::type arguments(argumentsSEXP);
-    TestParseStringVectorArgs(arguments);
-    return R_NilValue;
-END_RCPP
-}
-// timesTwo
-NumericVector timesTwo(NumericVector x);
-RcppExport SEXP _NRLBtools_timesTwo(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(timesTwo(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_NRLBtools_LogoGenerator_cmdline", (DL_FUNC) &_NRLBtools_LogoGenerator_cmdline, 1},
     {"_NRLBtools_LogoGenerator_Cpp", (DL_FUNC) &_NRLBtools_LogoGenerator_Cpp, 6},
-    {"_NRLBtools_TestParseCommandLine", (DL_FUNC) &_NRLBtools_TestParseCommandLine, 1},
-    {"_NRLBtools_TestParseStringVectorArgs", (DL_FUNC) &_NRLBtools_TestParseStringVectorArgs, 1},
-    {"_NRLBtools_timesTwo", (DL_FUNC) &_NRLBtools_timesTwo, 1},
     {NULL, NULL, 0}
 };
 
