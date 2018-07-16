@@ -1,4 +1,3 @@
-#!/bin/bash
 #Create parsing function
 parse_lines () {
 	grep $1 $2 | cut -f2 -d= | cut -f1 -d# | xargs
@@ -41,7 +40,7 @@ cd $homeDir
 
 #Copy the temporary xml file in the tmp folder
 mkdir tmp 2> /dev/null
-cp bin/template.xml tmp/$tmpXMLFileName
+cp template/template.xml tmp/$tmpXMLFileName
 
 #Replace necessary elements in xml file
 grep "=" $dataConfig  | while read line
@@ -57,7 +56,7 @@ varLen=$(parse_lines "variableRegionLength" $dataConfig)
 #Count kmers only if the file does not exist. Count R0 File first
 if [ ! -e tmp/$protName.0.R0.0.$varLen.dat ] || [[ $forceRecalc = true ]]
 then
-	java -Xmx8000m -cp ./bin/NRLB.jar utils.Build_MM_Kmer_Table $varLen 0 $homeDir/tmp/ $homeDir/tmp/$tmpXMLFileName $protName.0 R0 > /dev/null
+	java -Xmx8000m -cp ./lib/NRLB.jar utils.Build_MM_Kmer_Table $varLen 0 $homeDir/tmp/ $homeDir/tmp/$tmpXMLFileName $protName.0 R0 > /dev/null
 fi
 #STATUS="${?}"
 if [ $? -ne 0 ]
@@ -67,7 +66,7 @@ fi
 #Count Kmers for R1 File
 if [ ! -e tmp/$protName.1.R1.1.$varLen.dat ] || [[ $forceRecalc = true ]]
 then
-	java -Xmx8000m -cp ./bin/NRLB.jar utils.Build_MM_Kmer_Table $varLen 1 $homeDir/tmp/ $homeDir/tmp/$tmpXMLFileName $protName.1 R1 > /dev/null
+	java -Xmx8000m -cp ./lib/NRLB.jar utils.Build_MM_Kmer_Table $varLen 1 $homeDir/tmp/ $homeDir/tmp/$tmpXMLFileName $protName.1 R1 > /dev/null
 fi
 #STATUS="${?}"
 if [ $? -ne 0 ]
@@ -97,9 +96,9 @@ then
 	rm R0Models/$protName.* 2> /dev/null
 	if [[ $R0MK = null ]]
 	then
-		java -Xmx8000m -cp ./bin/NRLB.jar model.Round0Regression $varLen $homeDir/tmp/ $protName $lFlank $rFlank $homeDir/R0Models/ $R0MinK > /dev/null
+		java -Xmx8000m -cp ./lib/NRLB.jar model.Round0Regression $varLen $homeDir/tmp/ $protName $lFlank $rFlank $homeDir/R0Models/ $R0MinK > /dev/null
 	else
-		java -Xmx8000m -cp ./bin/NRLB.jar model.Round0Regression $varLen $homeDir/tmp/ $protName $lFlank $rFlank $homeDir/R0Models/ $R0MinK $R0MK > /dev/null
+		java -Xmx8000m -cp ./lib/NRLB.jar model.Round0Regression $varLen $homeDir/tmp/ $protName $lFlank $rFlank $homeDir/R0Models/ $R0MinK $R0MK > /dev/null
 	fi
 fi
 if [ $? -ne 0 ]
@@ -112,7 +111,7 @@ echo "Round0 Model Construction Complete. Starting NRLB..."
 forceRecalc=$(parse_lines "forceRecalc" $nrlbConfig)
 #Copy temporary configuration file and fill in relevant information
 mkdir NRLBModels 2> /dev/null
-cp bin/template.config NRLBModels/$tmpConfigName
+cp template/template.config NRLBModels/$tmpConfigName
 
 replace "s~@workingDir~$homeDir/tmp/~g" NRLBModels/$tmpConfigName
 replace "s~@seqRunName~$protName.1~g" NRLBModels/$tmpConfigName
@@ -138,7 +137,7 @@ done
 if [ ! -e NRLBModels/$protName-$nrlbOutName.csv ] || [[ $forceRecalc = true ]]
 then
 	rm NRLBModels/$protName-$nrlbOutName.* 2> /dev/null
-	java -$memUsage -cp ./bin/NRLB.jar model.NRLB NRLBModels/$tmpConfigName
+	java -$memUsage -cp ./lib/NRLB.jar model.NRLB NRLBModels/$tmpConfigName
 fi
 
 #Remove config file
