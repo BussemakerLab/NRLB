@@ -4,5 +4,5 @@ This repository contains code for building and using accurate biophysical models
 
 There are two distinct components to this repository:
 
-* ModelBuilding : commandline tools for building NRLB models (mostly intended for experts)
+* ModelFitting : commandline tools for building NRLB models (mostly intended for experts)
 * R-package/NRLBtools : user-friendly R package that contains all models discussed in Rastogi et al. (2018)
