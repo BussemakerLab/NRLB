@@ -1,0 +1,48 @@
+forceRecalc		=true		# Force the recalculation of fits, even if output files exist
+
+########################
+### Runtime Settings ###
+########################
+nThreads		= 4		# nThreads sets the number of threads Java should use (should be equal to the maximum hyperthreading capability of your system)
+isVerbose		= true		# isVerbose toggles verbose output for the optimizer
+
+########################
+### Data Information ###
+########################
+filterReads		= false		# Should reads be filtered? This is for testing purposes only and should not be used.
+maxBaseCount            = null		# Remove reads containing the same base for a given number of times (or more)
+maxBaseRepeat           = null		# Remove reads containing a consecutive run of bases for the given length
+regexFilter             = null		# Remove reads containing a particular regular expression
+shapeDir                = null		# The directory where the shape parameters are stored
+
+########################
+# Feature  Information #
+########################
+useDinuc                = false		# Should dinucleotide features be used? Options: "true" "false" OR "true,false"
+useShape                = false		# Should shape features be used? Options: "true" "false" OR "true,false"
+shapes                  = MGW		# Shape features; can test different combinations of shape parameters in groups. Groups are separated by pipes "|", and features within a group by commas. Example: MGW | ProT | HelT will run 3 different fits with either MGW, ProT, or HelT features. MGW, ProT | Roll, HelT will run 2 fits, one with MGW and ProT features, the other with Roll and HelT features
+useNSBinding            = true		# Should nonspecific binding be used?
+nShifts                 = 1             # Number of shifts to be tested
+flankLength             = 0             # Flank lengths to be tested
+
+########################
+### Mode Information ###
+########################
+nModes                  = 1             # Define number of modes
+startK                  = 8		# Starting K
+maxK                    = 10		# Ending K
+useSymmetry             = true		# Should symmetry be used?
+sweepLengths		= true		# Sweep through binding length sizes
+
+########################
+### Seed Information ###
+########################
+seedFit			= false		# Should the fit be seeded?
+modeSeed1		= null		# If you are seeding the fit, you need to provide the full seed (including dinucleotide features) for each mode separately
+modeSeed2		= null
+
+########################
+### Optimizer Config ###
+########################
+errorBars               = true		# Should error bars be computed?
+lambda                  = 1E-6		# Regularization parameter. Should be ingored in most cases
