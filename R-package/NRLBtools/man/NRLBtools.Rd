@@ -3,7 +3,6 @@
 \docType{package}
 \name{NRLBtools}
 \alias{NRLBtools}
-\alias{NRLBtools-package}
 \title{NRLBtools: utitilies for working with NRLB models}
 \description{
 The NRLB package provides tools for working with protein-DNA recognition models created by the No Read Left Behind (NRLB) algorithm developed by the Bussemaker Lab in the Department of Biological Sciences at Columbia University.

@@ -4,9 +4,18 @@
 \alias{score.seq}
 \title{Score sequences with a model}
 \usage{
-score.seq(sequence, models, index = NULL, mode = NULL, rc = FALSE,
-  rescale = 1, plot = FALSE, nPeaks = NULL, annotate = FALSE,
-  nrlb.model = NULL)
+score.seq(
+  sequence,
+  models,
+  index = NULL,
+  mode = NULL,
+  rc = FALSE,
+  rescale = 1,
+  plot = FALSE,
+  nPeaks = NULL,
+  annotate = FALSE,
+  nrlb.model = NULL
+)
 }
 \arguments{
 \item{sequence}{a text string containing the DNA sequence to be evaluated.}

@@ -1,7 +1,7 @@
 Package: NRLBtools
 Type: Package
 Title: Utilities for viewing and using NRLB models
-Version: 1.1
+Version: 1.2
 Date: 2017-11-07
 Author: Chaitanya Rastogi and Harmen J. Bussemaker
 Maintainer: Harmen J. Bussemaker <hjb2004@columbia.edu>
@@ -12,21 +12,21 @@ Description:
 Encoding: UTF-8
 LazyData: true
 Depends:
-    ggplot2
+    ggplot2,
+    ggseqlogo,
+    scales
 Imports:
-    Rcpp (>= 0.12.13),
-    magick,
-    Biostrings
-LinkingTo: Rcpp
+    Biostrings,
+    ggseqlogo,
+    scales
 License: GPL-3
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2
 Suggests: 
     knitr,
     rmarkdown
 VignetteBuilder: knitr
 Collate: 
     'zzz.R'
-    'RcppExports.R'
     'load-models.R'
     'logo.R'
     'package-NRLBtools.R'

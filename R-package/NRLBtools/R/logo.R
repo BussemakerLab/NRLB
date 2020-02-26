@@ -27,10 +27,10 @@
 #' A_3, C_3, G_3, T_3}}
 #' 
 #' @examples 
-#' logo(nrlb.models = 25)
+#' NRLBtools::logo(nrlb.model = 25)
 #' 
 #' m = NRLBtools::load.models(fileName = system.file("extdata", "MAX-NRLBConfig.csv", package = "NRLBtools"))
-#' logo(models = m, index = 8)
+#' NRLBtools::logo(models = m, index = 8)
 #'
 #' @export
 #' 
@@ -117,34 +117,22 @@ logo = function(models, index=NULL, mode=NULL, rc=FALSE, betas=NULL, title=NULL,
   }
   k = length(motif)/4
   dim(motif) = c(4, k)
-  motif = t(motif)
-  temp.dir = tempdir()
-  temp.file.xml = tempfile("psam-", temp.dir, ".xml")
-  write(paste0("<matrix_reduce>\n<psam_length>", k, "</psam_length>\n<psam>\n"), file=temp.file.xml, append=TRUE)
-  for (i in 1:k) {
-    write(paste0(motif[i,1],"\t\t",motif[i,2],"\t\t",motif[i,3],"\t\t",motif[i,4],"\n")
-          , file = temp.file.xml, append=TRUE)
-  }
-  write("</psam>\n</matrix_reduce>"
-        , file=temp.file.xml, append=TRUE)
+  motif = log(motif)
+  rownames(motif) = c("A", "C", "G", "T")
+  motif = apply(motif, 2, function(column) column-mean(column))
   
-  # compile command argument string for call to LogoGenerator
-  bash.string = paste0("-output=", temp.dir, " -logo=", f.name)
-  bash.string = paste0(bash.string, " -style=ddG -file=", temp.file.xml) 
-  bash.string = paste(bash.string, "-format=eps")
-  if (!is.null(title)) {
-    bash.string = paste0(bash.string, " -title=",title)
-  }
-  if (!is.null(ylim)) {
-    bash.string = paste0(bash.string, " -ymin=", ylim[1], " -ymax=", ylim[2])
-  }
-  
-  # run LogoGenerator
-  .LogoGenerator(bash.string)
-  
-  my.file = file.path(temp.dir, f.name)
-  im = magick::image_read(file.path(temp.dir, f.name))
-  return(im)
+  colScheme = make_col_scheme(chars=c("A", "C", "G", "T"), cols=c("#5CC93B", "#0D00C4", "#F4B63F", "#BB261A"))
+  img = ggseqlogo::ggseqlogo(motif, method='c', font="helvetica_bold", col_scheme=colScheme, coord_cartesian(ylim=20)) + 
+    ggplot2::theme_bw() +  
+    ggplot2::labs(x = NULL, y = NULL) + 
+    ggplot2::ylab(expression(paste(Delta, Delta, "GR/T"))) +
+    ggplot2::annotate('rect', xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 0, alpha = 0.5, fill='white') +
+    ggplot2::scale_y_continuous(breaks=pretty_breaks()) + 
+    ggplot2::geom_hline(yintercept=0) +
+    ggplot2::theme(text=element_text(size=23), axis.line=element_line(color="black", size=1), 
+          axis.ticks=element_line(color="black", size=1), panel.border=element_blank(), 
+          panel.grid=element_blank(), aspect.ratio = .5)
+  return(img)
 }
 
 .rc = function(models, index=NULL) {

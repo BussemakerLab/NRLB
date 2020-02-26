@@ -5,8 +5,5 @@
 #'
 #' @docType package
 #' @author Chaitanya Rastogi and Harmen J. Bussemaker
-#' @import Rcpp
-#' @importFrom Rcpp evalCpp
-#' @useDynLib NRLBtools
 #' @name NRLBtools
 NULL

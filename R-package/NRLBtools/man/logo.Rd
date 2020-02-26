@@ -4,9 +4,20 @@
 \alias{logo}
 \title{Generate a PSAM/Energy Logo}
 \usage{
-logo(models, index = NULL, mode = NULL, rc = FALSE, betas = NULL,
-  title = NULL, ylim = NULL, l.pad = 0, r.pad = 0, l.del = 0,
-  r.del = 0, nrlb.model = NULL)
+logo(
+  models,
+  index = NULL,
+  mode = NULL,
+  rc = FALSE,
+  betas = NULL,
+  title = NULL,
+  ylim = NULL,
+  l.pad = 0,
+  r.pad = 0,
+  l.del = 0,
+  r.del = 0,
+  nrlb.model = NULL
+)
 }
 \arguments{
 \item{models}{an NRLB model object.}
@@ -50,9 +61,9 @@ every position sequentially. For example, to plot a 3 bp logo, the following vec
 A_3, C_3, G_3, T_3}}
 }
 \examples{
-logo(nrlb.models = 25)
+NRLBtools::logo(nrlb.model = 25)
 
 m = NRLBtools::load.models(fileName = system.file("extdata", "MAX-NRLBConfig.csv", package = "NRLBtools"))
-logo(models = m, index = 8)
+NRLBtools::logo(models = m, index = 8)
 
 }
